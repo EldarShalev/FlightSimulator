@@ -8,8 +8,8 @@
  * validation of two correct arguments - port and times per second.
  */
 void OpenServerCommand::doCommand(string str) {
-    string port=Utils::getNextString(str,' ',1);
-    string times=Utils::getNextString(str,' ',2);
+    string port = Utils::getNextString(str,' ',1);
+    string times = Utils::getNextString(str,' ',2);
 
 }
 

@@ -9,7 +9,7 @@
 #include <iterator>
 #include <sstream>
 #include <map>
-#include "Command.h"
+#include "commands/Command.h"
 #define SIMULATOR_UTILS_H
 using namespace std;
 
