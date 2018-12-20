@@ -7,10 +7,8 @@
 
 #include "commands/OpenServerCommand.h"
 #include "commands/ConnectCommand.h"
-#include "commands/GetCommand.h"
 #include "commands/SetCommand.h"
 #include "commands/HeadingCommand.h"
-#include "commands/IsVarExistsCommand.h"
 #include "commands/LoopCommand.h"
 #include "commands/PrintCommand.h"
 #include "commands/SleepCommand.h"
