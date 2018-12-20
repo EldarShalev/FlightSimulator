@@ -4,13 +4,17 @@
 
 #ifndef SIMULATOR_PARSER_H
 #define SIMULATOR_PARSER_H
+
 #include "Global/CommandsMap.h"
 
 
 class Parser {
-
+private:
+    CommandsMap *commandsMap;
 public:
-    static void parser(vector<string> , CommandsMap* map1);
+    Parser() { commandsMap = new CommandsMap(); }
+
+    void parse(vector<string> input);
 };
 
 

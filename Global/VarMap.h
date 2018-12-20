@@ -13,26 +13,26 @@ using namespace std;
 class VarMap {
 
 public:
-    static map<string, double> symbolTable;
+    static map<string, Var> symbolTable;
 public:
 
-    static double getValue(string var) {
-        if (isVarExisted(var)) {
+    static Var getValue(string var) {
+        if (isVarExists(var)) {
             return symbolTable[var];
         }
         return -1;
     }
 
-      static bool isVarExisted(string var) {
+    static bool isVarExists(string var) {
         if (symbolTable.count(var) != 0) {
             return true;
         }
         return false;
     }
 
-      static void addOrSetVarAndValue(string var, int value) {
+    static void addOrSetVarAndValue(string var, int value) {
         // If var already exists - override value
-        if (isVarExisted(var)) {
+        if (isVarExists(var)) {
             symbolTable[var] = value;
         } else {
             symbolTable.insert(make_pair(var, value));
@@ -41,7 +41,5 @@ public:
 
 
 };
-
-
 
 #endif //SIMULATOR_VARMAP_H
