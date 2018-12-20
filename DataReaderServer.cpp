@@ -4,6 +4,22 @@
 
 #include "DataReaderServer.h"
 
+string DataReaderServer::address;
+int DataReaderServer::port;
+int DataReaderServer::sampleRate;
+
+void DataReaderServer::setPort(int newPort) {
+    port = newPort;
+}
+
+void DataReaderServer::setSampleRate(int newSampleRate) {
+    sampleRate = newSampleRate;
+}
+
+void DataReaderServer::setAddress(string newAddress) {
+    address = newAddress;
+}
+
 void DataReaderServer::openConnection() {
 //    string telnet = "--telnet=socket,in," + DataReaderServer::sampleRate;
 //    telnet.append("127.0.0.1," + DataReaderServer::port);

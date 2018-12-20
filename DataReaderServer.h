@@ -15,19 +15,19 @@
 using namespace std;
 
 class DataReaderServer {
-    // TODO this class needs to open new server with given port and times. (what about IP? always 127...?)
 private:
+    static string address;
     static int port;
     static int sampleRate;
 
 public:
-    static void setPort(int newPort) { DataReaderServer::port = newPort; }
+    static void setAddress(string newAddress);
 
-    static void setSampleRate(int newSampleRate) { DataReaderServer::sampleRate = newSampleRate; }
+    static void setPort(int newPort);
+
+    static void setSampleRate(int newSampleRate);
 
     static void openConnection();
-
 };
-
 
 #endif //SIMULATOR_DATAREADERSERVER_H

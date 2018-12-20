@@ -1,7 +1,6 @@
 #include <iostream>
 #include <fstream>
 #include "Parser.h"
-#include <string>
 
 void inputFromCli();
 
@@ -21,7 +20,7 @@ int main(int argc, char *argv[]) {
 
 void inputFromFile(char *filePath) {
     Parser parser;
-    cout << "Reading script " << filePath;
+    cout << "Reading script " << filePath << endl;
     ifstream inputFile(filePath);
     string line;
 
@@ -30,12 +29,12 @@ void inputFromFile(char *filePath) {
         parser.parse(lxd);
     }
     inputFile.close();
-    cout << "Finished executing the script, exiting program";
+    cout << "Finished executing the script, exiting program" << endl;
 }
 
 void inputFromCli() {
     Parser parser;
-    cout << "Please enter a command, or enter \"exit\" to end the program";
+    cout << "Please enter a command, or enter \"exit\" to end the program" << endl;
     bool exit = false;
     while (!exit) {
         string input;
@@ -48,5 +47,5 @@ void inputFromCli() {
             parser.parse(lxd);
         }
     }
-    cout << "Aurvua, Shoshana!";
+    cout << "Aurvua, Shoshana!" << endl;
 }
