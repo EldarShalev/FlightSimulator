@@ -7,9 +7,9 @@
 
 #include "../Utils.h"
 
-class LoopCommand : Command {
+class LoopCommand : public Command {
 public:
-    virtual void doCommand(string str);
+    virtual void doCommand(vector<string> str);
 };
 
 #endif //SIMULATOR_LOOPCOMMAND_H

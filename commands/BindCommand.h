@@ -7,9 +7,9 @@
 
 #include "../Utils.h"
 
-class BindCommand : Command {
+class BindCommand : public Command {
 public:
-    virtual void doCommand(string str);
+    virtual void doCommand(vector<string> str);
 };
 
 #endif //SIMULATOR_BINDCOMMAND_H

@@ -7,9 +7,9 @@
 
 #include "Command.h"
 
-class HeadingCommand : Command {
+class HeadingCommand : public Command {
 public:
-    virtual void doCommand(string str);
+    virtual void doCommand(vector<string> str);
 };
 
 #endif //SIMULATOR_HEADINGCOMMAND_H

@@ -4,8 +4,8 @@
 
 #include "GetCommand.h"
 
-void GetCommand::doCommand(string str) {
-    string varName = Utils::getNextString(str,' ',1);
+void GetCommand::doCommand(vector<string> str) {
+    string varName = Utils::getNextString(str.at(0),' ',1);
 
     //TODO - get var!
 }

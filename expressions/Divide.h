@@ -9,8 +9,8 @@
 
 class Divide : Binary {
 public:
-    Divide(Expression leftv, Expression rightv) : Binary(leftv, rightv){}
-    double calculate(){ return left.calculate() / right.calculate(); }
+    Divide(Expression* leftv, Expression* rightv) : Binary(leftv, rightv){}
+    double calculate(){ return left->calculate() / right->calculate(); }
 };
 
 #endif //SIMULATOR_DIVIDE_H

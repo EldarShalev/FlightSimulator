@@ -7,9 +7,9 @@
 
 #include "../Utils.h"
 
-class IsVarExistsCommand : Command {
+class IsVarExistsCommand : public Command {
 public:
-    virtual void doCommand(string str);
+    virtual void doCommand(vector<string> str);
 };
 
 #endif //SIMULATOR_ISVAREXISTSCOMMAND_H

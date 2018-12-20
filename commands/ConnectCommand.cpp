@@ -4,10 +4,15 @@
 
 #include "ConnectCommand.h"
 
-void ConnectCommand::doCommand(string str) {
-    string ip = Utils::getNextString(str,' ',1);
-    string port = Utils::getNextString(str,' ',2);
+void ConnectCommand::doCommand(vector<string> str) {
 
+    try {
+        int ip = Utils::stringToInt(str.at(0));
+        int port = Utils::stringToInt(str.at(1));
+    } catch (MyException& e1) {
+        cout << "ConnectCommand : " << __func__ << " : ";
+        cout <<e1.convertFromString() << ", function: " << e1.getFunc() << ", Info: " << e1.getInfo() <<endl ;
+    }
     //TODO - connect!
 
 }

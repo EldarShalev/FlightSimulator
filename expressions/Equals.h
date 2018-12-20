@@ -9,7 +9,7 @@
 
 class Equals : Binary {
 public:
-    Equals(Expression leftv, Expression rightv) : Binary(leftv, rightv){}
-    double calculate(){ return left.calculate() == right.calculate(); }
+    Equals(Expression* leftv, Expression* rightv) : Binary(leftv, rightv){}
+    double calculate(){ return left->calculate() == right->calculate(); }
 };
 #endif //FLIGHTSIMULATOR_EQUALS_H

@@ -8,9 +8,10 @@
 #include "Command.h"
 #include "../Utils.h"
 
-class ConnectCommand : Command {
+class ConnectCommand : public Command {
 public:
-    virtual void doCommand(string str);
+    ConnectCommand(){}
+    virtual void doCommand(vector<string> str);
 };
 
 #endif //SIMULATOR_CONNECTCOMMAND_H

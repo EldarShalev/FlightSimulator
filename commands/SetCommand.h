@@ -7,9 +7,10 @@
 
 #include "../Utils.h"
 
-class SetCommand : Command {
+class SetCommand : public Command {
 public:
-    virtual void doCommand(string str);
+    virtual void doCommand(vector<string> str);
+
 };
 
 #endif //SIMULATOR_SETCOMMAND_H

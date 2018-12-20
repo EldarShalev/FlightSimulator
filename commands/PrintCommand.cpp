@@ -4,8 +4,8 @@
 
 #include "PrintCommand.h"
 
-void PrintCommand::doCommand(string str) {
-    string toPrint = Utils::getNextString(str,' ',1);
+void PrintCommand::doCommand(vector<string> str) {
+    string toPrint = Utils::getNextString(str.at(0),' ',1);
 
     cout << toPrint;
 }
