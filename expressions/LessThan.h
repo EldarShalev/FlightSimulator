@@ -7,10 +7,11 @@
 
 #include "Binary.h"
 
-class LessThan : Binary {
+class LessThan : public Binary {
 public:
-    LessThan(Expression* leftv, Expression* rightv) : Binary(leftv, rightv){}
-    double calculate(){ return left->calculate() < right->calculate(); }
+    LessThan(Expression *leftv, Expression *rightv) : Binary(leftv, rightv) {}
+
+    double calculate() { return left->calculate() < right->calculate(); }
 };
 
 #endif //SIMULATOR_LESSTHAN_H

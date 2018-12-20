@@ -7,10 +7,11 @@
 
 #include "Binary.h"
 
-class Or : Binary {
+class Or : public Binary {
 public:
-    Or(Expression* leftv, Expression* rightv) : Binary(leftv, rightv){}
-    double calculate(){ return left->calculate() || right->calculate(); }
+    Or(Expression *leftv, Expression *rightv) : Binary(leftv, rightv) {}
+
+    double calculate() { return left->calculate() || right->calculate(); }
 };
 
 #endif //SIMULATOR_OR_H

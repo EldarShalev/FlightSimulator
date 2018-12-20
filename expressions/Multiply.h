@@ -7,10 +7,11 @@
 
 #include "Binary.h"
 
-class Multiply : Binary {
+class Multiply : public Binary {
 public:
-    Multiply(Expression* leftv, Expression* rightv) : Binary(leftv, rightv){}
-    double calculate(){ return left->calculate() * right->calculate(); }
+    Multiply(Expression *leftv, Expression *rightv) : Binary(leftv, rightv) {}
+
+    double calculate() { return left->calculate() * right->calculate(); }
 };
 
 #endif //SIMULATOR_MULTIPLY_H

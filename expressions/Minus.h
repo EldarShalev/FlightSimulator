@@ -7,10 +7,11 @@
 
 #include "Binary.h"
 
-class Minus : Binary {
+class Minus : public Binary {
 public:
-    Minus(Expression* leftv, Expression* rightv) : Binary(leftv, rightv){}
-    double calculate(){ return left->calculate() - right->calculate(); }
+    Minus(Expression *leftv, Expression *rightv) : Binary(leftv, rightv) {}
+
+    double calculate() { return left->calculate() - right->calculate(); }
 };
 
 #endif //SIMULATOR_MINUS_H

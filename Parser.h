@@ -15,6 +15,7 @@ public:
     Parser() { commandsMap = new CommandsMap(); }
 
     void parse(vector<string> input);
+
 };
 
 

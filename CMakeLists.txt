@@ -47,4 +47,4 @@ add_executable(FlightSimulator
         Global/CommandsMap.h
         main.cpp
         Utils.cpp
-        Utils.h Parser.cpp Parser.h DataReaderServer.cpp DataReaderServer.h MyException.cpp MyException.h Global/VarMap.h Global/VarMap.cpp data/Var.h data/BoundedVar.h)
+        Utils.h Parser.cpp Parser.h DataReaderServer.cpp DataReaderServer.h MyException.cpp MyException.h Global/VarMap.h Global/VarMap.cpp data/Var.h data/BoundedVar.h OperationPriority.cpp OperationPriority.h ShuntingYard.cpp ShuntingYard.h)

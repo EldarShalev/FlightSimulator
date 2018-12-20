@@ -8,9 +8,9 @@
 class Expression {
 public:
     Expression() {}
-    virtual double calculate(){};
-};
 
+    virtual double calculate() {};
+};
 
 
 #endif //SIMULATOR_EXPRESSION_H

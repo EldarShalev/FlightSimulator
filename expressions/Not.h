@@ -7,10 +7,11 @@
 
 #include "Binary.h"
 
-class Not : Binary {
+class Not : public Binary {
 public:
-    Not(Expression* leftv, Expression* rightv) : Binary(leftv, rightv){}
-    double calculate(){ return left->calculate() != right->calculate(); }
+    Not(Expression *leftv, Expression *rightv) : Binary(leftv, rightv) {}
+
+    double calculate() { return left->calculate() != right->calculate(); }
 };
 
 #endif //SIMULATOR_NOT_H

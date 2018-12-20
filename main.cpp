@@ -2,6 +2,7 @@
 #include <fstream>
 #include "Parser.h"
 #include <string>
+#include "ShuntingYard.h"
 
 void inputFromCli();
 
@@ -10,6 +11,13 @@ void inputFromFile(char *filePath);
 using namespace std;
 
 int main(int argc, char *argv[]) {
+    // Test
+    string one = " 5 + (4/2) * 5 * 4-2-3";
+    string two = "( 1 + (2/3) * (4+5) -6)";
+    ShuntingYard p(two);
+    cout << p.infixToPostfix() << endl;
+    Expression* e1= p.toExpression();
+    cout << e1->calculate() << endl;
     if (argc == 2) {
         inputFromFile(argv[1]);
     } else {

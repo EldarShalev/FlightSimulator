@@ -7,10 +7,11 @@
 
 #include "Binary.h"
 
-class GreaterThan : Binary {
+class GreaterThan : public Binary {
 public:
-    GreaterThan(Expression* leftv, Expression* rightv) : Binary(leftv, rightv){}
-    double calculate(){ return left->calculate() > right->calculate(); }
+    GreaterThan(Expression *leftv, Expression *rightv) : Binary(leftv, rightv) {}
+
+    double calculate() { return left->calculate() > right->calculate(); }
 };
 
 #endif //SIMULATOR_GREATERTHAN_H

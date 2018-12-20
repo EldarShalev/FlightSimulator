@@ -7,7 +7,7 @@
 
 #include "Binary.h"
 
-class Divide : Binary {
+class Divide : public Binary {
 public:
     Divide(Expression* leftv, Expression* rightv) : Binary(leftv, rightv){}
     double calculate(){ return left->calculate() / right->calculate(); }

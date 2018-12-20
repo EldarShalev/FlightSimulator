@@ -7,12 +7,13 @@
 
 #include "Expression.h"
 
-class Number : Expression {
+class Number : public Expression {
 private:
     double number;
 public:
     Number(double value) : number(value) {}
-    double calculate(){ return number;}
+
+    double calculate() { return number; }
 };
 
 
