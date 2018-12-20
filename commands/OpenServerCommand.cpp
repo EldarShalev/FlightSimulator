@@ -16,9 +16,10 @@ void OpenServerCommand::doCommand(vector<string> str) {
         int port = Utils::stringToInt(str.at(0));
         int sampleRate = Utils::stringToInt(str.at(1));
 
-//        DataReaderServer::setPort(port);
-//        DataReaderServer::setSampleRate(sampleRate);
-//        DataReaderServer::openConnection();
+        DataReaderServer::setPort(port);
+        DataReaderServer::setSampleRate(sampleRate);
+        DataReaderServer::setAddress("127.0.0.1");
+        DataReaderServer::openConnection();
     } catch (MyException &e1) {
         cout << "OpenServerCommand : " << __func__ << " : ";
         cout << e1.convertFromString() << ", function: " << e1.getFunc() << ", Info: " << e1.getInfo() << endl;

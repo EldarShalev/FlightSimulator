@@ -15,8 +15,6 @@ add_executable(FlightSimulator
         commands/ConnectCommand.h
         commands/HeadingCommand.cpp
         commands/HeadingCommand.h
-        commands/IsVarExistsCommand.cpp
-        commands/IsVarExistsCommand.h
         commands/LoopCommand.cpp
         commands/LoopCommand.h
         commands/OpenServerCommand.cpp
@@ -27,8 +25,6 @@ add_executable(FlightSimulator
         commands/SetCommand.h
         commands/SleepCommand.cpp
         commands/SleepCommand.h
-        commands/GetCommand.cpp
-        commands/GetCommand.h
         commands/CreateCommand.cpp
         commands/CreateCommand.h
         expressions/Equals.h
@@ -47,4 +43,4 @@ add_executable(FlightSimulator
         Global/CommandsMap.h
         main.cpp
         Utils.cpp
-        Utils.h Parser.cpp Parser.h DataReaderServer.cpp DataReaderServer.h MyException.cpp MyException.h Global/VarMap.h Global/VarMap.cpp data/Var.h data/BoundedVar.h OperationPriority.cpp OperationPriority.h ShuntingYard.cpp ShuntingYard.h)
+        Utils.h Parser.cpp Parser.h DataReaderServer.cpp DataReaderServer.h MyException.cpp MyException.h Global/VarMap.h Global/VarMap.cpp data/Var.h data/BoundedVar.h commands/IfCommand.cpp commands/IfCommand.h OperationPriority.cpp OperationPriority.h ShuntingYard.cpp ShuntingYard.h)
