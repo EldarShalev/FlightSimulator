@@ -7,6 +7,7 @@
 
 #include "Command.h"
 #include "../Utils.h"
+#include "reader/ConnectReaderClient.h"
 
 class ConnectCommand : public Command {
 public:

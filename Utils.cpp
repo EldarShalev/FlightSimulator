@@ -54,7 +54,7 @@ double Utils::stringToDouble(string str) {
     for (; i < n; i++) {
         char temp = str.at(i);
         if (temp > '9' || temp < '0') {
-            throw MyException("no file",__func__,"Utils");
+            throw MyException("no file", __func__, "Utils");
         }
         res += temp - '0';
         res *= 10;
@@ -64,5 +64,5 @@ double Utils::stringToDouble(string str) {
 }
 
 int Utils::stringToInt(string str) {
-    return (int)stringToDouble(str);
+    return (int) stringToDouble(str);
 }

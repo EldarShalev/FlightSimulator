@@ -11,23 +11,28 @@
 #include <sys/socket.h>
 #include <stdlib.h>
 #include <netinet/in.h>
+#include <cstring>
+#include <thread>
+
 
 using namespace std;
 
 class DataReaderServer {
 private:
-    static string address;
-    static int port;
-    static int sampleRate;
+    string address;
+    int port;
+    int sampleRate;
 
 public:
-    static void setAddress(string newAddress);
+    DataReaderServer(string address1, int port1, int sampleRate1);
+    void setAddress(string newAddress);
 
-    static void setPort(int newPort);
+    void setPort(int newPort);
 
-    static void setSampleRate(int newSampleRate);
+    void setSampleRate(int newSampleRate);
 
-    static void openConnection();
+    void openConnection();
+
 };
 
 #endif //SIMULATOR_DATAREADERSERVER_H
