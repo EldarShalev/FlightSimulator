@@ -9,9 +9,9 @@
 #include <thread>
 #include <chrono>
 
-class SleepCommand : Command {
+class SleepCommand : public Command {
 public:
-    virtual void doCommand(string str);
+    virtual void doCommand(vector<string> str);
 };
 
 #endif //SIMULATOR_SLEEPCOMMAND_H

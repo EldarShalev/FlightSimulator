@@ -8,9 +8,10 @@
 #include "Command.h"
 #include "../Utils.h"
 
-class OpenServerCommand : Command {
+class OpenServerCommand : public Command {
 public:
-    virtual void doCommand(string str);
+    //OpenServerCommand(){}
+    virtual void doCommand(vector <string> str);
     int stringToInt(string str);
 };
 

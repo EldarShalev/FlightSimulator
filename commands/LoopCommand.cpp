@@ -4,7 +4,7 @@
 
 #include "LoopCommand.h"
 
-void LoopCommand::doCommand(string str) {
+void LoopCommand::doCommand(vector<string> str) {
 
     //TODO - build loop!
 

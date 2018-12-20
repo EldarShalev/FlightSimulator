@@ -7,9 +7,9 @@
 
 #include "../Utils.h"
 
-class GetCommand : Command {
+class GetCommand : public Command {
 public:
-    virtual void doCommand(string str);
+    virtual void doCommand(vector<string> str);
 };
 
 #endif //FLIGHTSIMULATOR_GETCOMMAND_H

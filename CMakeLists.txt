@@ -44,7 +44,7 @@ add_executable(FlightSimulator
         expressions/Number.h
         expressions/Or.h
         expressions/Plus.h
-        CommandsMap.h
+        Global/CommandsMap.h
         main.cpp
         Utils.cpp
-        Utils.h)
+        Utils.h Parser.cpp Parser.h DataReaderServer.cpp DataReaderServer.h MyException.cpp MyException.h Global/VarMap.h Global/VarMap.cpp)

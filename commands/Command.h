@@ -6,11 +6,15 @@
 #define SIMULATOR_COMMAND_H
 
 #include <string>
+#include <vector>
+
 using namespace std;
 
 class Command {
 public:
-    virtual void doCommand(string str){};
+    virtual void doCommand(vector<string> str) {};
+
+    Command() {}
 };
 
 #endif //SIMULATOR_COMMAND_H

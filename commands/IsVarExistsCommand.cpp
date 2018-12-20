@@ -4,8 +4,8 @@
 
 #include "IsVarExistsCommand.h"
 
-void IsVarExistsCommand::doCommand(string str) {
-    string varName = Utils::getNextString(str,' ',1);
+void IsVarExistsCommand::doCommand(vector <string> str) {
+    string varName = Utils::getNextString(str.at(0),' ',1);
 
     //TODO - is var exists!
 }

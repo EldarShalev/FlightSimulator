@@ -7,10 +7,11 @@
 
 #include "Binary.h"
 
-class Plus : Binary {
+class Plus : public Binary {
 public:
-    Plus(Expression leftv, Expression rightv) : Binary(leftv, rightv){}
-    double calculate(){ return left.calculate() + right.calculate(); }
+    Plus(Expression *leftv, Expression *rightv) : Binary(leftv, rightv) {}
+
+    double calculate() { return left->calculate() + right->calculate(); }
 };
 
 #endif //SIMULATOR_PLUS_H

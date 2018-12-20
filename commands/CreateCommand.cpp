@@ -3,9 +3,11 @@
 //
 
 #include "CreateCommand.h"
+#include "Global/VarMap.h"
+void CreateCommand::doCommand(vector<string> str) {
+    string varName = str.at(0);
 
-void CreateCommand::doCommand(string str) {
-    string varName = Utils::getNextString(str,' ',1);
+    VarMap::addOrSetVarAndValue(varName,-1);
 
     //TODO - create var and update symbolTable
 }

@@ -2,34 +2,22 @@
 // Created by Eldar on 14-Dec-18.
 //
 #include "OpenServerCommand.h"
+#include "MyException.h"
 
 /**
  * Opening server command.
  * validation of two correct arguments - port and times per second.
  */
-void OpenServerCommand::doCommand(string str) {
-    string port = Utils::getNextString(str,' ',1);
-    string times = Utils::getNextString(str,' ',2);
+void OpenServerCommand::doCommand(vector<string> str) {
 
-}
+    try {
+        int port = Utils::stringToInt(str.at(0));
+        int times = Utils::stringToInt(str.at(1));
+    } catch (MyException &e1) {
+        cout << "OpenServerCommand : " << __func__ << " : ";
+        cout << e1.convertFromString() << ", function: " << e1.getFunc() << ", Info: " << e1.getInfo() << endl;
 
-/**
- *
- * @param str a given string.
- * @return int format.
- */
-int OpenServerCommand::stringToInt(string str) {
-    int n = str.length();
-    int i = 0;
-    int res = 0;
-    for (; i < n; i++) {
-        char temp = str.at(i);
-        if (temp > '9' || temp < '0') {
-            throw "unsupported date format";
-        }
-        res += temp - '0';
-        res *= 10;
     }
-    res /= 10;
-    return res;
+    // TODO add here DataReaderServer
+
 }

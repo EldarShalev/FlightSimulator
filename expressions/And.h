@@ -7,10 +7,12 @@
 
 #include "Binary.h"
 
-class And : Binary {
+class And : public Binary {
 public:
-    And(Expression leftv, Expression rightv) : Binary(leftv, rightv){}
-    double calculate(){ return left.calculate() && right.calculate(); }
+
+    And(Expression *leftv, Expression *rightv) : Binary(leftv, rightv) {}
+
+    double calculate() { return left->calculate() && right->calculate(); }
 };
 
 #endif //SIMULATOR_AND_H

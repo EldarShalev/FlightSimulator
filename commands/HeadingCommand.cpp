@@ -4,7 +4,7 @@
 
 #include "HeadingCommand.h"
 
-void HeadingCommand::doCommand(string str) {
+void HeadingCommand::doCommand(vector<string> str) {
 
     //TODO - get heading!
 

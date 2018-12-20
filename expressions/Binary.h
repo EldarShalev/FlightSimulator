@@ -7,13 +7,16 @@
 
 #include "Expression.h"
 
-class Binary : Expression {
-protected:
-    Expression left;
-    Expression right;
+class Binary : public Expression {
 public:
-    Binary(Expression leftv, Expression rightv) : left(leftv), right(rightv){}
-    virtual double calculate();
+    Expression *left;
+    Expression *right;
+public:
+    Binary(Expression *leftv, Expression *rightv) : left(leftv), right(rightv) {}
+
+    virtual double calculate(){};
 };
+
+
 
 #endif //SIMULATOR_BINARY_H
