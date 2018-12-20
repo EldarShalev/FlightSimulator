@@ -7,12 +7,12 @@
 
 #include "Command.h"
 #include "../Utils.h"
+#include "DataReaderServer.h"
+#include "MyException.h"
 
 class OpenServerCommand : public Command {
 public:
-    //OpenServerCommand(){}
     virtual void doCommand(vector <string> str);
-    int stringToInt(string str);
 };
 
 #endif //SIMULATOR_OPENSERVERCOMMAND_H

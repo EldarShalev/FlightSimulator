@@ -6,8 +6,8 @@
 #include "Global/VarMap.h"
 void CreateCommand::doCommand(vector<string> str) {
     string varName = str.at(0);
-
-    VarMap::addOrSetVarAndValue(varName,-1);
+    Var *v = new Var(-1);
+    VarMap::addOrUpdateVar(varName, v);
 
     //TODO - create var and update symbolTable
 }

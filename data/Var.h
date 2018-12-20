@@ -5,7 +5,6 @@
 #ifndef SIMULATOR_VAR_H
 #define SIMULATOR_VAR_H
 
-
 class Var {
 private:
     double value;
@@ -16,6 +15,5 @@ public:
 
     virtual void set(double value) { this->value = value; }
 };
-
 
 #endif //SIMULATOR_VAR_H

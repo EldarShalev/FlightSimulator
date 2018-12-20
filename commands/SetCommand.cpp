@@ -3,25 +3,26 @@
 //
 
 #include "SetCommand.h"
-#include "Global/VarMap.h"
 
 void SetCommand::doCommand(vector<string> str) {
-    bool foungBind = false;
+    Var *var;
+    bool shouldBind = false;
     for (vector<string>::iterator it = str.begin(); it != str.end(); ++it) {
         if (*it == "bind") {
-            foungBind = true;
+            shouldBind = true;
         }
     }
-    //TODO  If there is bind, the set shouldn't work?
-    if (!foungBind) {
-        try {
-            int value = Utils::stringToInt(str.at(2));
-            VarMap::addOrSetVarAndValue(str.at(0),value);
-        } catch (MyException& e1) {
-            cout << "SetCommand : " << __func__ << " : ";
-            cout <<e1.convertFromString() << ", function: " << e1.getFunc() << ", Info: " << e1.getInfo() <<endl ;
+    try {
+        if (shouldBind) {
+            string filePath = str.at(3);
+            double value = 2;//TODO get from bind
+            var = new BoundedVar(value, filePath);
+        } else {
+            var = new Var(Utils::stringToDouble(str.at(2)));
         }
+        VarMap::addOrUpdateVar(str.at(0), var);
+    } catch (MyException &e1) {
+        cout << "SetCommand : " << __func__ << " : ";
+        cout << e1.convertFromString() << ", function: " << e1.getFunc() << ", Info: " << e1.getInfo() << endl;
     }
-
-    //TODO - set var and update symbolTable
 }

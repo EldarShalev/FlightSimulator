@@ -47,10 +47,10 @@ vector<string> Utils::lexer(string str) {
  * @param str a given string.
  * @return int format.
  */
-int Utils::stringToInt(string str) {
+double Utils::stringToDouble(string str) {
     int n = str.length();
     int i = 0;
-    int res = 0;
+    double res = 0;
     for (; i < n; i++) {
         char temp = str.at(i);
         if (temp > '9' || temp < '0') {
@@ -61,4 +61,8 @@ int Utils::stringToInt(string str) {
     }
     res /= 10;
     return res;
+}
+
+int Utils::stringToInt(string str) {
+    return (int)stringToDouble(str);
 }

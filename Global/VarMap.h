@@ -7,39 +7,21 @@
 
 #include <map>
 #include <string>
+#include "data/Var.h"
 
 using namespace std;
 
 class VarMap {
 
+private:
+    static map<string, Var *> symbolTable;
 public:
-    static map<string, Var> symbolTable;
-public:
 
-    static Var getValue(string var) {
-        if (isVarExists(var)) {
-            return symbolTable[var];
-        }
-        return -1;
-    }
+    static Var* getVar(string var);
 
-    static bool isVarExists(string var) {
-        if (symbolTable.count(var) != 0) {
-            return true;
-        }
-        return false;
-    }
+    static bool isVarExists(string var);
 
-    static void addOrSetVarAndValue(string var, int value) {
-        // If var already exists - override value
-        if (isVarExists(var)) {
-            symbolTable[var] = value;
-        } else {
-            symbolTable.insert(make_pair(var, value));
-        }
-    }
-
-
+    static void addOrUpdateVar(string varName, Var *value);
 };
 
 #endif //SIMULATOR_VARMAP_H

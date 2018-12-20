@@ -19,11 +19,8 @@ class Utils {
 public:
     static string getNextString(string full, char delimiter, int index);
     static vector<string> lexer(string str);
+    static double stringToDouble(string str);
     static int stringToInt(string str);
-
-
-
 };
-
 
 #endif //SIMULATOR_UTILS_H
