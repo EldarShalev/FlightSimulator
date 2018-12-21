@@ -4,24 +4,11 @@
 
 #include "DataReaderServer.h"
 
-DataReaderServer::DataReaderServer(string address1, int port1, int sampleRate1) : address(address1), port(port1),
-                                                                                  sampleRate(sampleRate1) {}
-
-void DataReaderServer::setPort(int newPort) {
-    port = newPort;
-}
-
-void DataReaderServer::setSampleRate(int newSampleRate) {
-    sampleRate = newSampleRate;
-}
-
-void DataReaderServer::setAddress(string newAddress) {
-    address = newAddress;
-}
+DataReaderServer::DataReaderServer(string address1, int port1, int sampleRate1) : address(address1), port(port1), sampleRate(sampleRate1) {}
 
 void DataReaderServer::openConnection() {
-    int server_fd, new_socket, valread;
-    new_socket = port;
+    int server_fd, valread;
+    socketListener = port;
     struct sockaddr_in address;
     int opt = 1;
     int addrlen = sizeof(address);
@@ -52,12 +39,16 @@ void DataReaderServer::openConnection() {
         perror("listen");
         exit(EXIT_FAILURE);
     }
-    if ((new_socket = accept(server_fd, (struct sockaddr *) &address, (socklen_t *) &addrlen)) < 0) {
+    if ((socketListener = accept(server_fd, (struct sockaddr *) &address, (socklen_t *) &addrlen)) < 0) {
         perror("accept");
         exit(EXIT_FAILURE);
     }
-    valread = read(new_socket, buffer, 1024);
+    valread = read(socketListener, buffer, 1024);
     printf("%s\n", buffer);
-    send(new_socket, hello, strlen(hello), 0);
+    send(socketListener, hello, strlen(hello), 0);
     printf("Hello message sent\n");
+}
+
+void DataReaderServer::closeConnection() {
+    close(socketListener);
 }

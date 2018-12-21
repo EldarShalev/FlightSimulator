@@ -6,12 +6,12 @@
 
 ConnectReaderClient::ConnectReaderClient(string ip1, int port1) : ip(ip1), port(port1) {}
 
-void ConnectReaderClient::connect() {
+void ConnectReaderClient::connectToServer() {
     struct sockaddr_in address;
-    int sock = 0, valread;
+    int valread;
     struct sockaddr_in serv_addr;
     char buffer[1024] = {0};
-    if ((sock = socket(AF_INET, SOCK_STREAM, 0)) < 0) {
+    if ((socketListener = socket(AF_INET, SOCK_STREAM, 0)) < 0) {
         printf("\n Socket creation error \n");
         exit(0);
     }
@@ -27,13 +27,17 @@ void ConnectReaderClient::connect() {
         exit(0);
     }
 
-    if (::connect(sock, (struct sockaddr *) &serv_addr, sizeof(serv_addr)) < 0) {
+    if (::connect(socketListener, (struct sockaddr *) &serv_addr, sizeof(serv_addr)) < 0) {
         printf("\nConnection Failed \n");
         exit(0);
     }
     string hello="get /controls/flight/speedbrake";
-    send(sock, hello.c_str(), hello.length(), 0);
+    send(socketListener, hello.c_str(), hello.length(), 0);
     printf(hello.c_str());
-    valread = read(sock, buffer, 1024);
+    valread = read(socketListener, buffer, 1024);
     printf("%s\n", buffer);
+}
+
+void ConnectReaderClient::closeConnection() {
+    close(socketListener);
 }

@@ -22,17 +22,13 @@ private:
     string address;
     int port;
     int sampleRate;
-
+    int socketListener;
 public:
     DataReaderServer(string address1, int port1, int sampleRate1);
-    void setAddress(string newAddress);
-
-    void setPort(int newPort);
-
-    void setSampleRate(int newSampleRate);
 
     void openConnection();
 
+    void closeConnection();
 };
 
 #endif //SIMULATOR_DATAREADERSERVER_H

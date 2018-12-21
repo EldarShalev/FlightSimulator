@@ -11,15 +11,16 @@ void ConnectionsHandler::connectDataReaderServer(string ip, int port, int sample
 
 void ConnectionsHandler::connectReaderClient(string ip, int port) {
     client = new ConnectReaderClient(ip, port);
-    client->connect();
+    client->connectToServer();
 }
 
 ConnectionsHandler::~ConnectionsHandler() {
-    //TODO should close connections first somehow?
     if (server != NULL) {
+        server->closeConnection();
         delete server;
     }
     if (client != NULL) {
+        client->closeConnection();
         delete client;
     }
 };

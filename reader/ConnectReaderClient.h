@@ -21,10 +21,13 @@ class ConnectReaderClient {
 private:
     int port;
     string ip;
+    int socketListener;
 public:
     ConnectReaderClient(string ip1, int port1);
 
-    void connect();
+    void connectToServer();
+
+    void closeConnection();
 };
 
 #endif //SIMULATOR_CONNECTREADERCLIENT_H
