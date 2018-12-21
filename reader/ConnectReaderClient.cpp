@@ -2,6 +2,7 @@
 // Created by Eldar on 21-Dec-18.
 //
 
+#include <netdb.h>
 #include "ConnectReaderClient.h"
 
 ConnectReaderClient::ConnectReaderClient(string ip1, int port1) : ip(ip1), port(port1) {}
@@ -16,10 +17,11 @@ void ConnectReaderClient::connectToServer() {
         exit(0);
     }
 
-    memset(&serv_addr, 0, sizeof(serv_addr));
+    memset(&serv_addr, 0, sizeof(ip));
 
     serv_addr.sin_family = AF_INET;
     serv_addr.sin_port = htons(port);
+    // serv_addr.sin_addr.s_addr=inet_addr(ip.c_str());
 
     // Convert IPv4 and IPv6 addresses from text to binary form
     if (inet_pton(AF_INET, ip.c_str(), &serv_addr.sin_addr) <= 0) {

@@ -20,7 +20,14 @@ double Utils::stringToDouble(string str) {
  * @return int
  */
 int Utils::stringToInt(string str) {
-    return stoi(str);
+    try {
+        int toint= stoi(str);
+        return toint;
+    } catch (exception exception1){
+        throw MyException("no file",__func__,"Utils");
+    }
+
+
 }
 
 string Utils::trim(const string str) {

@@ -13,6 +13,7 @@
 #include <netinet/in.h>
 #include <cstring>
 #include <thread>
+#include <pthread.h>
 
 
 using namespace std;

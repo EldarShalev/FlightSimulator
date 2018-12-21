@@ -6,7 +6,8 @@ set(CMAKE_CXX_STANDARD 14)
 include_directories(.)
 include_directories(commands)
 include_directories(expressions)
-
+set(GCC_COVERAGE_COMPILE_FLAGS "-pthread")
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${GCC_COVERAGE_COMPILE_FLAGS}" )
 add_executable(FlightSimulator
         commands/Command.h
         commands/ConnectCommand.cpp
