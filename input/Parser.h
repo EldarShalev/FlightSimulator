@@ -15,11 +15,18 @@ private:
     CommandsMap *commandsMap;
     ShuntingYard shuntingYard;
     VarMap varMap;
+
+    vector<string> createParsedInput(vector<string> &input, int idx);
+
+    Expression *getExpression(vector<string> &input, int idx);
+
 public:
     Parser() {
         commandsMap = new CommandsMap();
     }
+
     ~Parser();
+
     void parse(vector<string> input);
 };
 

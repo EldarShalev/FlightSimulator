@@ -7,31 +7,6 @@
 
 /**
  *
- * @param full string
- * @param delimiter the type of char, backspace, comma etc.
- * @param index which part of the string to cut.
- * @return the specific delimited string we want.
- */
-string Utils::getNextString(string full, char delimiter, int index) {
-    int i = 0;
-    int counter = 1;
-    string stringToReturn = "";
-    while (i < full.length()) {
-        if (full.at(i) == delimiter) {
-            if (counter == index) {
-                return stringToReturn;
-            }
-            counter++;
-            stringToReturn = "";
-        } else {
-            stringToReturn.push_back(full.at(i));
-        }
-        i++;
-    }
-}
-
-/**
- *
  * @param str a given string
  * @return double
  */

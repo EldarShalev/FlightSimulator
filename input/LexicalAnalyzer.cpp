@@ -10,14 +10,12 @@
  * @return vector of strings, each declares a word.
  */
 vector<string> LexicalAnalyzer::analyze(string input) {
-//    cout << "Lexer line: " << input << endl;
-
     match_results<std::string::const_iterator> what;
-    std::string::const_iterator start = input.begin() ;
+    std::string::const_iterator start = input.begin();
     vector<string> result;
     regex_search(start, input.cend(), what, keywords);
     if (!what[0].matched) {
-        if(input != "\r") {
+        if (input != "\r") {
             result.push_back(input);
         }
         return result;
@@ -28,20 +26,13 @@ vector<string> LexicalAnalyzer::analyze(string input) {
             if (what[j] != input) {
                 vector<string> jres = analyze(Utils::trim(what[j]));
                 result.insert(result.end(), jres.begin(), jres.end());
-            }
-            else if (find(result.begin(), result.end(), input) != result.end()) {
+            } else if (find(result.begin(), result.end(), input) != result.end()) {
                 // do nothing, I hate C++
-            } else {
-                if(input != "\r") {
-                    result.push_back(input);
-                }
+            } else if (input != "\r") {
+                result.push_back(input);
             }
         }
     }
-//    cout << "Results: ";
-//    for(int i=0; i<result.size(); ++i)
-//        cout << result[i] << "## ";
-//    cout << endl;
     return result;
 }
 

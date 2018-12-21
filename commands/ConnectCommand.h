@@ -8,6 +8,7 @@
 #include "Command.h"
 #include "input/Utils.h"
 #include "maps/VarMap.h"
+#include "reader/ConnectReaderClient.h"
 
 class ConnectCommand : public Command {
 public:

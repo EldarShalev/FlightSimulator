@@ -7,7 +7,7 @@
 
 #include "Command.h"
 #include "input/Utils.h"
-#include "DataReaderServer.h"
+#include "reader/DataReaderServer.h"
 #include "data/MyException.h"
 
 class OpenServerCommand : public Command {

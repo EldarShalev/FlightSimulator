@@ -7,15 +7,14 @@
 void ConnectCommand::doCommand(vector<string> str) {
 
     try {
-        int ip = Utils::stringToInt(str.at(0));
+        string ip = str.at(0);
         int port = Utils::stringToInt(str.at(1));
+        // TODO - don't forget to delete allocated memory
+        ConnectReaderClient *connectReaderClient = new ConnectReaderClient(ip, port);
+        connectReaderClient->connect();
 
-        string generic = "--generic=socket,out,1," + ip;
-        generic.append("," + port);
-        generic.append(",tcp,generic_small");
-        
-    } catch (MyException& e1) {
+    } catch (MyException &e1) {
         cout << "ConnectCommand : " << __func__ << " : ";
-        cout <<e1.convertFromString() << ", function: " << e1.getFunc() << ", Info: " << e1.getInfo() <<endl ;
+        cout << e1.convertFromString() << ", function: " << e1.getFunc() << ", Info: " << e1.getInfo() << endl;
     }
 }

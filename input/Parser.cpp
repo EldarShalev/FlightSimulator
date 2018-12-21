@@ -32,18 +32,7 @@ void Parser::parse(vector<string> input) {
                 d->doCommand(input);
             } else {
                 if (input.size() - i - 2 > 1) { //more then 1 argument left
-                    vector<string> smellsLikeAnExpression(input.begin() + i + 1, input.end());
-                    string joinedString;
-                    Utils::join(smellsLikeAnExpression, ' ', joinedString);
-                    Expression *expression = shuntingYard.toExpression(joinedString);
-                    vector<string> newInput;
-                    if (input[i] == "=") {
-                        //get var name too!
-                        newInput.push_back(input[i - 1]);
-                    }
-                    newInput.push_back(input[i]);
-                    newInput.push_back(Utils::doubleToString(expression->calculate()));
-                    delete expression;
+                    vector<string> newInput = createParsedInput(input, i);
                     d->doCommand(newInput);
                 } else {
                     d->doCommand(input);
@@ -52,6 +41,27 @@ void Parser::parse(vector<string> input) {
             break; //because we found the command in this line, so we are done here
         }
     }
+}
+
+vector<string> Parser::createParsedInput(vector<string> &input, int idx) {
+    Expression *expression = getExpression(input, idx);
+    vector<string> newInput;
+    if (input[idx] == "=") {
+        //get var name too!
+        newInput.push_back(input[idx - 1]);
+    }
+    newInput.push_back(input[idx]);
+    newInput.push_back(Utils::doubleToString(expression->calculate()));
+    delete expression;
+    return newInput;
+}
+
+Expression *Parser::getExpression(vector<string> &input, int idx) {
+    vector<string> smellsLikeAnExpression(input.begin() + idx + 1, input.end());
+    string joinedString;
+    Utils::join(smellsLikeAnExpression, ' ', joinedString);
+    Expression *expression = shuntingYard.toExpression(joinedString);
+    return expression;
 }
 
 Parser::~Parser() {

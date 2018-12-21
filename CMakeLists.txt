@@ -42,8 +42,10 @@ add_executable(FlightSimulator
         maps/VarMap.h
         maps/VarMap.cpp
         main.cpp
-        DataReaderServer.cpp
-        DataReaderServer.h
+        reader/DataReaderServer.cpp
+        reader/DataReaderServer.h
+        reader/ConnectReaderClient.cpp
+        reader/ConnectReaderClient.h
         data/MyException.h
         data/Var.h
         data/BoundedVar.h
