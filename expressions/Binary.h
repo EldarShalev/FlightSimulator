@@ -14,9 +14,12 @@ public:
 public:
     Binary(Expression *leftv, Expression *rightv) : left(leftv), right(rightv) {}
 
-    virtual double calculate(){};
+    ~Binary() {
+        delete left;
+        delete right;
+    }
+
+    virtual double calculate() {};
 };
-
-
 
 #endif //SIMULATOR_BINARY_H

@@ -5,7 +5,9 @@
 #ifndef FLIGHTSIMULATOR_CREATECOMMAND_H
 #define FLIGHTSIMULATOR_CREATECOMMAND_H
 
-#include "../Utils.h"
+#include "input/Utils.h"
+#include "data/Var.h"
+#include "maps/VarMap.h"
 
 class CreateCommand : public Command {
 public:

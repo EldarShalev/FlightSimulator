@@ -3,10 +3,8 @@
 //
 
 #include "CreateCommand.h"
-#include "Global/VarMap.h"
 
 void CreateCommand::doCommand(vector<string> str) {
-    string varName = str.at(0);
-    Var *v = new Var(-1);
-    VarMap::addOrUpdateVar(varName, v);
+    cout << "Creating var " << str[0] << endl;
+    VarMap::add(str[0], new Var());
 }

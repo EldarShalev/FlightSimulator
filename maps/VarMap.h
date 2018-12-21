@@ -8,6 +8,7 @@
 #include <map>
 #include <string>
 #include "data/Var.h"
+#include "data/BoundedVar.h"
 
 using namespace std;
 
@@ -16,12 +17,15 @@ class VarMap {
 private:
     static map<string, Var *> symbolTable;
 public:
-
-    static Var* getVar(string var);
+    static Var *getVar(string var);
 
     static bool isVarExists(string var);
 
-    static void addOrUpdateVar(string varName, Var *value);
+    static void update(string varName, Var *var);
+
+    static void add(string varName, Var *var);
+
+    void release();
 };
 
 #endif //SIMULATOR_VARMAP_H

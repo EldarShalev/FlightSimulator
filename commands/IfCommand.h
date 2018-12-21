@@ -5,7 +5,7 @@
 #ifndef SIMULATOR_IFCOMMAND_H
 #define SIMULATOR_IFCOMMAND_H
 
-#include "../Utils.h"
+#include "input/Utils.h"
 
 class IfCommand : public Command {
 public:

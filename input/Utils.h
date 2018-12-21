@@ -10,7 +10,7 @@
 #include <iterator>
 #include <sstream>
 #include "commands/Command.h"
-#include "MyException.h"
+#include "data/MyException.h"
 
 using namespace std;
 
@@ -18,9 +18,11 @@ class Utils {
 
 public:
     static string getNextString(string full, char delimiter, int index);
-    static vector<string> lexer(string str);
     static double stringToDouble(string str);
     static int stringToInt(string str);
+    static string trim(const string str);
+    static string doubleToString(double number);
+    static void join(vector<string> input, char delimiter, string &output);
 };
 
 #endif //SIMULATOR_UTILS_H

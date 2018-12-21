@@ -14,11 +14,16 @@ class BoundedVar : public Var {
 private:
     string path;
 public:
-    BoundedVar(double value, const string &path) : Var(value), path(path) {}
+    BoundedVar(const string &path) : path(path) { }
 
     void set(double value) {
         Var::set(value);
-        //TODO - updated path in server too
+        //TODO - update value in server too
+    }
+
+    double get() {
+        //TODO: get value from server
+        return 0;
     }
 };
 

@@ -5,7 +5,7 @@
 #ifndef SIMULATOR_LOOPCOMMAND_H
 #define SIMULATOR_LOOPCOMMAND_H
 
-#include "../Utils.h"
+#include "input/Utils.h"
 
 class LoopCommand : public Command {
 public:

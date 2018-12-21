@@ -9,7 +9,7 @@
 #include <stack>
 #include <string>
 #include <map>
-#include "MyException.h"
+#include "data/MyException.h"
 
 using namespace std;
 enum Priority {

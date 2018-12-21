@@ -6,9 +6,9 @@
 #define SIMULATOR_OPENSERVERCOMMAND_H
 
 #include "Command.h"
-#include "../Utils.h"
+#include "input/Utils.h"
 #include "DataReaderServer.h"
-#include "MyException.h"
+#include "data/MyException.h"
 
 class OpenServerCommand : public Command {
 public:

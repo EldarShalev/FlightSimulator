@@ -5,7 +5,7 @@
 #ifndef SIMULATOR_SLEEPCOMMAND_H
 #define SIMULATOR_SLEEPCOMMAND_H
 
-#include "../Utils.h"
+#include "input/Utils.h"
 #include <thread>
 #include <chrono>
 

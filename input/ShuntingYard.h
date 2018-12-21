@@ -20,16 +20,11 @@ using namespace std;
 class ShuntingYard {
 
 private:
-    std::string m_srcFormula;
     OperationPriority m_op;
 public:
-    ShuntingYard(string string1);
+    Expression *toExpression(string src);
 
-    Expression* toExpression();
-
-    string infixToPostfix() const;
-
+    string infixToPostfix(string src) const;
 };
-
 
 #endif //SIMULATOR_SHUNTINGYARD_H

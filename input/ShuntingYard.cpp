@@ -4,15 +4,8 @@
 
 #include "ShuntingYard.h"
 
-
-/**
- * The constructor init the priority map and assign infix format to the member.
- * @param src given infix format.
- */
-ShuntingYard::ShuntingYard(string src) : m_srcFormula(src), m_op() {}
-
-Expression* ShuntingYard::toExpression() {
-    string postfixFormat = infixToPostfix();
+Expression* ShuntingYard::toExpression(string src) {
+    string postfixFormat = infixToPostfix(src);
     stack<Expression*> st;
     string tmpBuf;
 
@@ -61,14 +54,11 @@ Expression* ShuntingYard::toExpression() {
     return st.top();
 }
 
-
-
-
-string ShuntingYard::infixToPostfix() const {
+string ShuntingYard::infixToPostfix(string src) const {
     std::string strOut;
     std::stack<char> stackOp;
 
-    for(auto curSym = m_srcFormula.begin(); curSym != m_srcFormula.end(); ++curSym)
+    for(auto curSym = src.begin(); curSym != src.end(); ++curSym)
     {
         if (*curSym==' '){
             continue;

@@ -9,6 +9,8 @@ class Expression {
 public:
     Expression() {}
 
+    ~Expression() {}
+
     virtual double calculate() {};
 };
 

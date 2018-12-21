@@ -6,7 +6,8 @@
 #define SIMULATOR_CONNECTCOMMAND_H
 
 #include "Command.h"
-#include "../Utils.h"
+#include "input/Utils.h"
+#include "maps/VarMap.h"
 
 class ConnectCommand : public Command {
 public:

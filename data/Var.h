@@ -11,6 +11,8 @@ private:
 public:
     Var(double value) : value(value) {}
 
+    Var() {}
+
     virtual double get() { return value; }
 
     virtual void set(double value) { this->value = value; }

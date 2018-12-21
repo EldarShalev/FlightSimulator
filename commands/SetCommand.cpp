@@ -5,6 +5,7 @@
 #include "SetCommand.h"
 
 void SetCommand::doCommand(vector<string> str) {
+    cout << "Setting var " << str[0] << endl;
     Var *var;
     bool shouldBind = false;
     for (vector<string>::iterator it = str.begin(); it != str.end(); ++it) {
@@ -14,13 +15,11 @@ void SetCommand::doCommand(vector<string> str) {
     }
     try {
         if (shouldBind) {
-            string filePath = str.at(3);
-            double value = 2;//TODO get from bind
-            var = new BoundedVar(value, filePath);
+            var = new BoundedVar(str[3]);
         } else {
-            var = new Var(Utils::stringToDouble(str.at(2)));
+            var = new Var(Utils::stringToDouble(str[2]));
         }
-        VarMap::addOrUpdateVar(str.at(0), var);
+        VarMap::update(str[0], var);
     } catch (MyException &e1) {
         cout << "SetCommand : " << __func__ << " : ";
         cout << e1.convertFromString() << ", function: " << e1.getFunc() << ", Info: " << e1.getInfo() << endl;

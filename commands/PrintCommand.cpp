@@ -5,6 +5,8 @@
 #include "PrintCommand.h"
 
 void PrintCommand::doCommand(vector<string> str) {
-    string toPrint = Utils::getNextString(str.at(0), ' ', 1);
-    cout << toPrint;
+    vector<string> toPrint(str.begin() + 1, str.end());
+    string joinedString;
+    Utils::join(toPrint, ' ', joinedString);
+    cout << joinedString << endl;
 }

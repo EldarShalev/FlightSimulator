@@ -5,7 +5,7 @@
 #ifndef SIMULATOR_PRINTCOMMAND_H
 #define SIMULATOR_PRINTCOMMAND_H
 
-#include "../Utils.h"
+#include "input/Utils.h"
 #include <iostream>
 using namespace std;
 

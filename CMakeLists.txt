@@ -8,13 +8,9 @@ include_directories(commands)
 include_directories(expressions)
 
 add_executable(FlightSimulator
-        commands/BindCommand.cpp
-        commands/BindCommand.h
         commands/Command.h
         commands/ConnectCommand.cpp
         commands/ConnectCommand.h
-        commands/HeadingCommand.cpp
-        commands/HeadingCommand.h
         commands/LoopCommand.cpp
         commands/LoopCommand.h
         commands/OpenServerCommand.cpp
@@ -27,6 +23,8 @@ add_executable(FlightSimulator
         commands/SleepCommand.h
         commands/CreateCommand.cpp
         commands/CreateCommand.h
+        commands/IfCommand.cpp
+        commands/IfCommand.h
         expressions/Equals.h
         expressions/And.h
         expressions/Binary.h
@@ -36,11 +34,26 @@ add_executable(FlightSimulator
         expressions/LessThan.h
         expressions/Minus.h
         expressions/Multiply.h
-        expressions/Not.h
+        expressions/NotEquals.h
         expressions/Number.h
         expressions/Or.h
         expressions/Plus.h
-        Global/CommandsMap.h
+        maps/CommandsMap.h
+        maps/VarMap.h
+        maps/VarMap.cpp
         main.cpp
-        Utils.cpp
-        Utils.h Parser.cpp Parser.h DataReaderServer.cpp DataReaderServer.h MyException.cpp MyException.h Global/VarMap.h Global/VarMap.cpp data/Var.h data/BoundedVar.h commands/IfCommand.cpp commands/IfCommand.h OperationPriority.cpp OperationPriority.h ShuntingYard.cpp ShuntingYard.h)
+        DataReaderServer.cpp
+        DataReaderServer.h
+        data/MyException.h
+        data/Var.h
+        data/BoundedVar.h
+        input/Utils.cpp
+        input/Utils.h
+        input/Parser.cpp
+        input/Parser.h
+        input/OperationPriority.cpp
+        input/OperationPriority.h
+        input/ShuntingYard.cpp
+        input/ShuntingYard.h
+        input/LexicalAnalyzer.cpp
+        input/LexicalAnalyzer.h)

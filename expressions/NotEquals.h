@@ -7,9 +7,9 @@
 
 #include "Binary.h"
 
-class Not : public Binary {
+class NotEquals : public Binary {
 public:
-    Not(Expression *leftv, Expression *rightv) : Binary(leftv, rightv) {}
+    NotEquals(Expression *leftv, Expression *rightv) : Binary(leftv, rightv) {}
 
     double calculate() { return left->calculate() != right->calculate(); }
 };

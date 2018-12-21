@@ -5,8 +5,8 @@
 #ifndef SIMULATOR_SETCOMMAND_H
 #define SIMULATOR_SETCOMMAND_H
 
-#include "../Utils.h"
-#include "Global/VarMap.h"
+#include "input/Utils.h"
+#include "maps/VarMap.h"
 #include "data/BoundedVar.h"
 
 class SetCommand : public Command {
