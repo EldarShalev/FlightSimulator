@@ -30,7 +30,7 @@ public:
 
     void closeConnection();
 
-    string read(string key);
+    string readServerCommand(string key);
 };
 
 #endif //SIMULATOR_DATAREADERSERVER_H

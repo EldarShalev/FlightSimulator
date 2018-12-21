@@ -30,5 +30,5 @@ void ConnectionsHandler::send(string cmd) {
 }
 
 string ConnectionsHandler::receive(string key) {
-    return server->read(key);
+    return server->readServerCommand(key);
 };
