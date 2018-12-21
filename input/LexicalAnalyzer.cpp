@@ -45,5 +45,5 @@ vector<string> LexicalAnalyzer::analyze(string input) {
 }
 
 LexicalAnalyzer::LexicalAnalyzer() {
-    keywords = "(.*)(openDataServer|connect|var|bind|=|heading|while|if|sleep|print|==|>=|<=|<|>|!=|&&|\\|\\||-|\\+|\\*|\\/|\\(|\\)|\\\r)(.*)";
+    keywords = "(.*)(openDataServer|connect|var|bind|=|heading|while|if|sleep|print|==|>=|<=|<|>|!=|&&|\\|\\||-|\\+|\\*|\\/|\\(|\\)|\\\r|\\}|\\{)(.*)";
 }

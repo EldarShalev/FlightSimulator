@@ -7,7 +7,7 @@
 void SetCommand::doCommand(vector<string> str) {
     cout << "Setting var " << str[0] << endl;
     try {
-        if (str.size() != 4) {
+        if (!(str.size() == 4 || str.size()==3)) {
             throw MyException("Can accept only 4 arguments", __func__, "SetCommand");
         }
         Var *var;
