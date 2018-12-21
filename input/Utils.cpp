@@ -11,7 +11,11 @@
  * @return double
  */
 double Utils::stringToDouble(string str) {
-    return stod(str);
+    try {
+        return stod(str);
+    } catch (exception exception1) {
+        throw MyException("no file", __func__, "Utils");
+    }
 }
 
 /**
@@ -21,19 +25,16 @@ double Utils::stringToDouble(string str) {
  */
 int Utils::stringToInt(string str) {
     try {
-        int toint= stoi(str);
+        int toint = stoi(str);
         return toint;
-    } catch (exception exception1){
-        throw MyException("no file",__func__,"Utils");
+    } catch (exception exception1) {
+        throw MyException("no file", __func__, "Utils");
     }
-
-
 }
 
 string Utils::trim(const string str) {
     size_t first = str.find_first_not_of(' ');
-    if (string::npos == first)
-    {
+    if (string::npos == first) {
         return str;
     }
     size_t last = str.find_last_not_of(' ');
@@ -54,6 +55,14 @@ void Utils::join(vector<string> input, char delimiter, string &output) {
         output += *p;
         if (p != input.end() - 1)
             output += delimiter;
+    }
+}
+
+void Utils::buildPathFromVector(vector<string> input, string &output) {
+    output.clear();
+    for (vector<string>::const_iterator p = input.begin();
+         p != input.end(); ++p) {
+        output += *p;
     }
 }
 

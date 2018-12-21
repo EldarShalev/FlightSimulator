@@ -6,21 +6,22 @@
 
 void SetCommand::doCommand(vector<string> str) {
     cout << "Setting var " << str[0] << endl;
-    Var *var;
-    bool shouldBind = false;
-    for (vector<string>::iterator it = str.begin(); it != str.end(); ++it) {
-        if (*it == "bind") {
-            shouldBind = true;
-            break;
-        }
-    }
     try {
+        if (str.size() != 4) {
+            throw MyException("Can accept only 4 arguments", __func__, "SetCommand");
+        }
+        Var *var;
+        bool shouldBind = false;
+        if (str[2] == "bind") {
+            shouldBind = true;
+        }
+
         if (shouldBind) {
-            // TODO str[3] is not the full bind
-            var = new BoundedVar(str[2]);
+            var = new BoundedVar(str[3]);
         } else {
             var = new Var(Utils::stringToDouble(str[2]));
         }
+
         VarMap::update(str[0], var);
     } catch (MyException &e1) {
         cout << "SetCommand : " << __func__ << " : ";

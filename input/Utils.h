@@ -23,6 +23,7 @@ public:
     static string doubleToString(double number);
     static void join(vector<string> input, char delimiter, string &output);
     static vector<string> splitByWhitespaces(string str);
+    static void buildPathFromVector(vector<string> input, string &output);
 };
 
 #endif //SIMULATOR_UTILS_H

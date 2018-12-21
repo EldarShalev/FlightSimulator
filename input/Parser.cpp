@@ -17,38 +17,38 @@ void Parser::parse(vector<string> input) {
         input.erase(input.begin()); //remove the keyword var
     }
 
-    // Second step - replace all existing vars with their values, unless its the first argument - then its an assignment and we don't need to replace it, so we are skipping it
+    // Then check for bind command
+    if (input.size() >= 3 && input[2] == "bind") {
+        vector<string> bindPathVector(input.begin() + 3, input.end());
+        string joinedPath;
+        Utils::buildPathFromVector(bindPathVector, joinedPath);
+        // build command args: x = bind /path/to/file
+        vector<string> args(input.begin(), input.begin() + 3);
+        args.push_back(joinedPath);
+        Command *d = commandsMap->getCommand(input[1]); // set command
+        d->doCommand(args);
+        return; //No more commands on this line
+    }
+
+    // Third step - replace all existing vars with their values, unless its the first argument - then its an assignment and we don't need to replace it, so we are skipping it
     for (int i = 1; i < input.size(); ++i) {
         if (varMap.isVarExists(input[i])) {
-            Var* temp=varMap.getVar(input[i]);
-            double vard=temp->get();
-            input[i] = Utils::doubleToString(vard);
+            Var *temp = varMap.getVar(input[i]);
+            input[i] = Utils::doubleToString(temp->get());
         }
     }
 
-    // Third step - find the command, there should only be 1 per line, unless its var (or bounded var)
+    // Fourth step - find the command, there should only be 1 per line, unless its var (or bounded var)
     for (int i = 0; i < input.size(); ++i) {
         if (commandsMap->getCommand(input[i]) != NULL) {
             Command *d = commandsMap->getCommand(input[i]);
-            if (input[i + 1] == "bind") { //send as is
-                vector<string> smellsLikeAnExpression(input.begin() + i + 2, input.end());
-                string joinedString;
-                Utils::join(smellsLikeAnExpression,'/', joinedString);
-                vector<string> temp;
-                temp.push_back(input[i-1]);
-                temp.push_back("bind");
-                temp.push_back(joinedString);
-                // TODO we pass:  1) name of var 2) the word bind 3) path  with '/'
-                d->doCommand(temp);
+            if (input.size() - i - 2 > 1) { //more then 1 argument left
+                vector<string> newInput = createParsedInput(input, i);
+                d->doCommand(newInput);
             } else {
-                if (input.size() - i - 2 > 1) { //more then 1 argument left
-                    vector<string> newInput = createParsedInput(input, i);
-                    d->doCommand(newInput);
-                } else {
-                    d->doCommand(input);
-                }
+                d->doCommand(input);
             }
-            break; //because we found the command in this line, so we are done here
+            return; //No more commands on this line
         }
     }
 }
