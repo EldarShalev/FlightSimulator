@@ -29,6 +29,8 @@ public:
     void openConnection();
 
     void closeConnection();
+
+    string read(string key);
 };
 
 #endif //SIMULATOR_DATAREADERSERVER_H

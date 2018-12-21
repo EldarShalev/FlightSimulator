@@ -13,3 +13,12 @@ void ConnectionsManager::connectDataReaderServer(string ip, int port, int sample
 void ConnectionsManager::connectReaderClient(string ip, int port) {
     handler.connectReaderClient(ip, port);
 }
+
+void ConnectionsManager::send(string cmd) {
+    handler.send(cmd);
+}
+
+string ConnectionsManager::sendAndRecieve(string cmd) {
+    handler.send(cmd);
+    return handler.receive("something");
+}

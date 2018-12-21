@@ -52,3 +52,8 @@ void DataReaderServer::openConnection() {
 void DataReaderServer::closeConnection() {
     close(socketListener);
 }
+
+string DataReaderServer::read(string key) {
+    //TODO - read output value by key
+    return "";
+}

@@ -18,6 +18,10 @@ public:
     void connectReaderClient(string ip, int port);
 
     ~ConnectionsHandler();
+
+    void send(string cmd);
+
+    string receive(string key);
 };
 
 #endif //SIMULATOR_CONNECTIONSHANDLER_H

@@ -14,6 +14,10 @@ public:
     static void connectDataReaderServer(string ip, int port, int sampleRate);
 
     static void connectReaderClient(string ip, int port);
+
+    static void send(string cmd);
+
+    static string sendAndRecieve(string cmd);
 };
 
 #endif //SIMULATOR_CONNECTIONSMANAGER_H

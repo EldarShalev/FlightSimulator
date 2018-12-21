@@ -7,6 +7,7 @@
 
 #include <string>
 #include "Var.h"
+#include "reader/ConnectionsManager.h"
 
 using namespace std;
 
@@ -18,12 +19,16 @@ public:
 
     void set(double value) {
         Var::set(value);
-        //TODO - update value in server too
+        string cmd = "set " + path + " " + Utils::doubleToString(value) + "/r/n";
+        ConnectionsManager::send(cmd);
     }
 
     double get() {
-        //TODO - get value from server, should change the return below
-        return 0;
+        string cmd = "get " + path + "/r/n";
+        string value = ConnectionsManager::sendAndRecieve(cmd);
+        double dvalue = Utils::stringToDouble(value);
+        Var::set(dvalue);
+        return dvalue;
     }
 };
 

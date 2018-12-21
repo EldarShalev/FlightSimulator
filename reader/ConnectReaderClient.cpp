@@ -41,3 +41,7 @@ void ConnectReaderClient::connectToServer() {
 void ConnectReaderClient::closeConnection() {
     close(socketListener);
 }
+
+void ConnectReaderClient::sendCommand(string cmd) {
+    //TODO send cmd
+}

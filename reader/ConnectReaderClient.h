@@ -28,6 +28,8 @@ public:
     void connectToServer();
 
     void closeConnection();
+
+    void sendCommand(string cmd);
 };
 
 #endif //SIMULATOR_CONNECTREADERCLIENT_H

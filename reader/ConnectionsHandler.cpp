@@ -23,4 +23,12 @@ ConnectionsHandler::~ConnectionsHandler() {
         client->closeConnection();
         delete client;
     }
+}
+
+void ConnectionsHandler::send(string cmd) {
+    client->sendCommand(cmd);
+}
+
+string ConnectionsHandler::receive(string key) {
+    return server->read(key);
 };
