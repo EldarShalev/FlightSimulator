@@ -9,9 +9,7 @@ void ConnectCommand::doCommand(vector<string> str) {
     try {
         string ip = str.at(0);
         int port = Utils::stringToInt(str.at(1));
-        // TODO - don't forget to delete allocated memory
-        ConnectReaderClient *connectReaderClient = new ConnectReaderClient(ip, port);
-        connectReaderClient->connect();
+        ConnectionsManager::connectReaderClient(ip, port);
 
     } catch (MyException &e1) {
         cout << "ConnectCommand : " << __func__ << " : ";

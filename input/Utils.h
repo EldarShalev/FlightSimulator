@@ -17,12 +17,12 @@ using namespace std;
 class Utils {
 
 public:
-    static string getNextString(string full, char delimiter, int index);
     static double stringToDouble(string str);
     static int stringToInt(string str);
     static string trim(const string str);
     static string doubleToString(double number);
     static void join(vector<string> input, char delimiter, string &output);
+    static vector<string> splitByWhitespaces(string str);
 };
 
 #endif //SIMULATOR_UTILS_H

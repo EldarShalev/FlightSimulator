@@ -49,3 +49,15 @@ void Utils::join(vector<string> input, char delimiter, string &output) {
             output += delimiter;
     }
 }
+
+vector<string> Utils::splitByWhitespaces(string str) {
+    vector<string> result;
+    std::stringstream ss(str);
+    std::string item;
+    while (std::getline(ss, item, ' ')) {
+        if (item.length() > 0) {
+            result.push_back(trim(item));
+        }
+    }
+    return result;
+}

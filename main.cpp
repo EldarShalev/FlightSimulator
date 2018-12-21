@@ -11,11 +11,13 @@ void inputFromFile(char *filePath);
 
 int main(int argc, char *argv[]) {
     cout << "Welcome to the flight simulator!" << endl;
+
     if (argc == 2) {
         inputFromFile(argv[1]);
     } else {
         inputFromCli();
     }
+
     cout << "Aurvua, Shoshana!" << endl;
     return 0;
 }

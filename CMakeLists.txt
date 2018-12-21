@@ -46,6 +46,10 @@ add_executable(FlightSimulator
         reader/DataReaderServer.h
         reader/ConnectReaderClient.cpp
         reader/ConnectReaderClient.h
+        reader/ConnectionsHandler.cpp
+        reader/ConnectionsHandler.h
+        reader/ConnectionsManager.cpp
+        reader/ConnectionsManager.h
         data/MyException.h
         data/Var.h
         data/BoundedVar.h

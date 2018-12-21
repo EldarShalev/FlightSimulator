@@ -22,7 +22,7 @@ public:
     }
 
     double get() {
-        //TODO: get value from server
+        //TODO - get value from server, should change the return below
         return 0;
     }
 };

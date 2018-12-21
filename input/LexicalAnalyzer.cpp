@@ -16,7 +16,10 @@ vector<string> LexicalAnalyzer::analyze(string input) {
     regex_search(start, input.cend(), what, keywords);
     if (!what[0].matched) {
         if (input != "\r") {
-            result.push_back(input);
+            vector<string> splitted = Utils::splitByWhitespaces(input);
+            if(!splitted.empty()) {
+                result.insert(result.end(), splitted.begin(), splitted.end());
+            }
         }
         return result;
     }
@@ -25,11 +28,16 @@ vector<string> LexicalAnalyzer::analyze(string input) {
         if (what[j] != "") {
             if (what[j] != input) {
                 vector<string> jres = analyze(Utils::trim(what[j]));
-                result.insert(result.end(), jres.begin(), jres.end());
+                if(!jres.empty()) {
+                    result.insert(result.end(), jres.begin(), jres.end());
+                }
             } else if (find(result.begin(), result.end(), input) != result.end()) {
                 // do nothing, I hate C++
             } else if (input != "\r") {
-                result.push_back(input);
+                vector<string> splitted = Utils::splitByWhitespaces(input);
+                if(!splitted.empty()) {
+                    result.insert(result.end(), splitted.begin(), splitted.end());
+                }
             }
         }
     }

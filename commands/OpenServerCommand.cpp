@@ -15,9 +15,7 @@ void OpenServerCommand::doCommand(vector<string> str) {
         }
         int port = Utils::stringToInt(str.at(0));
         int sampleRate = Utils::stringToInt(str.at(1));
-        // TODO - don't forget to delete allocated memory
-        DataReaderServer* dataReaderServer = new DataReaderServer("127.0.0.1",port,sampleRate);
-        dataReaderServer->openConnection();
+        ConnectionsManager::connectDataReaderServer("127.0.0.1", port, sampleRate);
     } catch (MyException &e1) {
         cout << "OpenServerCommand : " << __func__ << " : ";
         cout << e1.convertFromString() << ", function: " << e1.getFunc() << ", Info: " << e1.getInfo() << endl;
