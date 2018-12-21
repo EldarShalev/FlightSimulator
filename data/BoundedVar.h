@@ -7,6 +7,7 @@
 
 #include <string>
 #include "Var.h"
+#include "input/Utils.h"
 #include "reader/ConnectionsManager.h"
 
 using namespace std;
