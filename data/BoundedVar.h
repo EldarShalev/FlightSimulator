@@ -20,12 +20,12 @@ public:
 
     void set(double value) {
         Var::set(value);
-        string cmd = "set " + path + " " + Utils::doubleToString(value) + "/r/n";
+        string cmd = "set " + path + " " + Utils::doubleToString(value) + "\\r\\n";
         ConnectionsManager::send(cmd);
     }
 
     double get() {
-        string cmd = "get " + path + "/r/n";
+        string cmd = "get " + path + "\\r\\n";
         string value = ConnectionsManager::sendAndRecieve(cmd);
         double dvalue = Utils::stringToDouble(value);
         Var::set(dvalue);

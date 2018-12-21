@@ -81,7 +81,10 @@ void DataReaderServer::closeConnection() {
 
 string DataReaderServer::readServerCommand(string key) {
     //TODO - read output value by key
-    return "";
+    int valread;
+    char buffer[1024] = {0};
+    valread = read( this->socketListener , buffer, 1024);
+    return buffer;
 }
 
 

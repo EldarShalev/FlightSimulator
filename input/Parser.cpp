@@ -20,7 +20,9 @@ void Parser::parse(vector<string> input) {
     // Second step - replace all existing vars with their values, unless its the first argument - then its an assignment and we don't need to replace it, so we are skipping it
     for (int i = 1; i < input.size(); ++i) {
         if (varMap.isVarExists(input[i])) {
-            input[i] = Utils::doubleToString(varMap.getVar(input[i])->get());
+            Var* temp=varMap.getVar(input[i]);
+            double vard=temp->get();
+            input[i] = Utils::doubleToString(vard);
         }
     }
 
@@ -29,7 +31,15 @@ void Parser::parse(vector<string> input) {
         if (commandsMap->getCommand(input[i]) != NULL) {
             Command *d = commandsMap->getCommand(input[i]);
             if (input[i + 1] == "bind") { //send as is
-                d->doCommand(input);
+                vector<string> smellsLikeAnExpression(input.begin() + i + 2, input.end());
+                string joinedString;
+                Utils::join(smellsLikeAnExpression,'/', joinedString);
+                vector<string> temp;
+                temp.push_back(input[i-1]);
+                temp.push_back("bind");
+                temp.push_back(joinedString);
+                // TODO we pass:  1) name of var 2) the word bind 3) path  with '/'
+                d->doCommand(temp);
             } else {
                 if (input.size() - i - 2 > 1) { //more then 1 argument left
                     vector<string> newInput = createParsedInput(input, i);

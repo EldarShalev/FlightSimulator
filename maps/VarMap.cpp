@@ -4,7 +4,7 @@
 
 #include "VarMap.h"
 
-map<string, Var *> VarMap::symbolTable = {{"heading", new BoundedVar("/instrumentation/heading-indicator/offset-deg")}};
+map<string, Var *> VarMap::symbolTable;// = {{"heading", new BoundedVar("/instrumentation/heading-indicator/offset-deg")}};
 
 void VarMap::update(string varName, Var *var) {
     symbolTable[varName] = var;

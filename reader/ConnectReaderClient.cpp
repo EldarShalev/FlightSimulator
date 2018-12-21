@@ -21,7 +21,7 @@ void ConnectReaderClient::connectToServer() {
 
     serv_addr.sin_family = AF_INET;
     serv_addr.sin_port = htons(port);
-    // serv_addr.sin_addr.s_addr=inet_addr(ip.c_str());
+    serv_addr.sin_addr.s_addr = inet_addr(ip.c_str());
 
     // Convert IPv4 and IPv6 addresses from text to binary form
     if (inet_pton(AF_INET, ip.c_str(), &serv_addr.sin_addr) <= 0) {
@@ -33,11 +33,6 @@ void ConnectReaderClient::connectToServer() {
         printf("\nConnection Failed \n");
         exit(0);
     }
-    string hello="get /controls/flight/speedbrake";
-    send(socketListener, hello.c_str(), hello.length(), 0);
-    printf(hello.c_str());
-    valread = read(socketListener, buffer, 1024);
-    printf("%s\n", buffer);
 }
 
 void ConnectReaderClient::closeConnection() {
@@ -45,5 +40,6 @@ void ConnectReaderClient::closeConnection() {
 }
 
 void ConnectReaderClient::sendCommand(string cmd) {
+    send(this->socketListener, cmd.c_str(), cmd.length(), 0);
     //TODO send cmd
 }

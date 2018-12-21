@@ -7,8 +7,8 @@
 void ConnectCommand::doCommand(vector<string> str) {
 
     try {
-        string ip = str.at(0);
-        int port = Utils::stringToInt(str.at(1));
+        string ip = str.at(1);
+        int port = Utils::stringToInt(str.at(2));
         ConnectionsManager::connectReaderClient(ip, port);
 
     } catch (MyException &e1) {

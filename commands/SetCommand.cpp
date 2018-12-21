@@ -11,11 +11,13 @@ void SetCommand::doCommand(vector<string> str) {
     for (vector<string>::iterator it = str.begin(); it != str.end(); ++it) {
         if (*it == "bind") {
             shouldBind = true;
+            break;
         }
     }
     try {
         if (shouldBind) {
-            var = new BoundedVar(str[3]);
+            // TODO str[3] is not the full bind
+            var = new BoundedVar(str[2]);
         } else {
             var = new Var(Utils::stringToDouble(str[2]));
         }
