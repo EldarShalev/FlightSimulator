@@ -17,7 +17,7 @@ public:
 
     static void send(string cmd);
 
-    static string sendAndRecieve(string cmd);
+    static string sendAndReceive(string cmd);
 };
 
 #endif //SIMULATOR_CONNECTIONSMANAGER_H

@@ -18,7 +18,7 @@ void ConnectionsManager::send(string cmd) {
     handler.send(cmd);
 }
 
-string ConnectionsManager::sendAndRecieve(string cmd) {
+string ConnectionsManager::sendAndReceive(string cmd) {
     handler.send(cmd);
     return handler.receive("something");
 }

@@ -54,6 +54,7 @@ add_executable(FlightSimulator
         data/MyException.h
         data/Var.h
         data/BoundedVar.h
+        data/Semaphore.h
         input/Utils.cpp
         input/Utils.h
         input/Parser.cpp

@@ -26,7 +26,7 @@ public:
 
     double get() {
         string cmd = "get " + path + "\\r\\n";
-        string value = ConnectionsManager::sendAndRecieve(cmd);
+        string value = ConnectionsManager::sendAndReceive(cmd);
         double dvalue = Utils::stringToDouble(value);
         Var::set(dvalue);
         return dvalue;

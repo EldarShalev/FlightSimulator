@@ -14,6 +14,7 @@
 #include <cstring>
 #include <thread>
 #include <arpa/inet.h>
+#include <netdb.h>
 
 using namespace std;
 
