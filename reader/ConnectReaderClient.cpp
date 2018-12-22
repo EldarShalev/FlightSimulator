@@ -40,6 +40,16 @@ void ConnectReaderClient::closeConnection() {
 }
 
 void ConnectReaderClient::sendCommand(string cmd) {
-    send(this->socketListener, cmd.c_str(), cmd.length(), 0);
+    // TODO check first if we can handle client server communication
+    static int a = 1;
+    string hardCoded;
+    if (a == 1) {
+        hardCoded = "set /instrumentation/heading-indicator/offset-deg 20\\r\\n";
+        a++;
+    } else {
+        hardCoded = "get /instrumentation/heading-indicator/offset-deg\\r\\n";
+    }
+
+    send(this->socketListener, hardCoded.c_str(), cmd.length(), 0);
     //TODO send cmd
 }

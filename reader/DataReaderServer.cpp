@@ -16,7 +16,6 @@ void DataReaderServer::openConnection() {
     int opt = 1;
     int addrlen = sizeof(address);
     char buffer[1024] = {0};
-    char *hello = "Hello from server";
 
     // Creating socket file descriptor
     if ((server_fd = socket(AF_INET, SOCK_STREAM, 0)) == 0) {
@@ -38,7 +37,7 @@ void DataReaderServer::openConnection() {
         perror("bind failed");
         exit(EXIT_FAILURE);
     }
-    if (listen(server_fd, 3) < 0) {
+    if (listen(server_fd, 5) < 0) {
         perror("listen");
         exit(EXIT_FAILURE);
     }
@@ -70,8 +69,6 @@ void DataReaderServer::openConnection() {
         }
         valread = ::read(socketListener, buffer, 1024);
         printf("%s\n", buffer);
-        send(socketListener, hello, strlen(hello), 0);
-        printf("Hello message sent\n");
     }
 }
 
@@ -94,9 +91,7 @@ void *connection_handler(void *socket_desc) {
     int read_size;
     char *message, client_message[2000];
 
-//    //Send some messages to the client
-//    message = "Greetings! I am your connection handler\n";
-//    write(sock, message, strlen(message));
+
 
     //Receive a message from client
     while ((read_size = recv(sock, client_message, 2000, 0)) > 0) {
