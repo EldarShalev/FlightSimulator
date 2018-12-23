@@ -8,5 +8,5 @@ void PrintCommand::doCommand(vector<string> str) {
     vector<string> toPrint(str.begin() + 1, str.end());
     string joinedString;
     Utils::join(toPrint, ' ', joinedString);
-    cout << joinedString << endl;
+    cout << "Print command: " << joinedString << endl;
 }

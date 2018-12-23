@@ -15,21 +15,37 @@ using namespace std;
 class BoundedVar : public Var {
 private:
     string path;
+    string nameOfVar;
 public:
-    BoundedVar(const string &path) : path(path) { }
+    BoundedVar(const string &path, string name) : path(path), nameOfVar(name) {}
 
     void set(double value) {
         Var::set(value);
-        string cmd = "set " + path + " " + Utils::doubleToString(value) + "\\r\\n";
-        ConnectionsManager::send(cmd);
+        char *conversion = new char[path.length() + 10];
+        sprintf(conversion, "set %s %s\r\n", path.c_str(), Utils::doubleToString(value).c_str());
+
+
+        string value1 = ConnectionsManager::send(conversion);
+        delete conversion;
     }
 
     double get() {
-        string cmd = "get " + path + "\\r\\n";
-        string value = ConnectionsManager::sendAndReceive(cmd);
-        double dvalue = Utils::stringToDouble(value);
-        Var::set(dvalue);
-        return dvalue;
+        char *conversion = new char[path.length() + 10];
+        sprintf(conversion, "get %s\r\n", path.c_str());
+        string value2 = ConnectionsManager::send(conversion);
+
+        try {
+            double dvalue = Utils::parseValueAfterGet(value2);
+            cout << "Value is " << dvalue <<endl;
+            Var::set(dvalue);
+            return dvalue;
+        } catch (MyException &e1) {
+            cout << "BoundedVar : " << __func__ << " : ";
+            cout << e1.convertToString() << ", function: " << e1.getFunc() << ", Info: " << e1.getInfo() << endl;
+
+        }
+
+
     }
 };
 

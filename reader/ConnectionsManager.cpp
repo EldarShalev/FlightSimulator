@@ -14,11 +14,7 @@ void ConnectionsManager::connectReaderClient(string ip, int port) {
     handler.connectReaderClient(ip, port);
 }
 
-void ConnectionsManager::send(string cmd) {
-    handler.send(cmd);
+string  ConnectionsManager::send(string cmd) {
+    return handler.send(cmd);
 }
 
-string ConnectionsManager::sendAndReceive(string cmd) {
-    handler.send(cmd);
-    return handler.receive("something");
-}

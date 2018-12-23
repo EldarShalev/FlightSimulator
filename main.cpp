@@ -19,6 +19,7 @@ int main(int argc, char *argv[]) {
     }
 
     cout << "Aurvua, Shoshana!" << endl;
+    // TODO - thread is still running, need to close when main is finish
     return 0;
 }
 
@@ -52,4 +53,5 @@ void inputFromCli() {
             parser.parse(lxd);
         }
     }
+
 }

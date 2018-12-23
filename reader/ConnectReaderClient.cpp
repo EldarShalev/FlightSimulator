@@ -1,6 +1,7 @@
 //
 // Created by Eldar on 21-Dec-18.
 //
+#include <iostream>
 #include "ConnectReaderClient.h"
 
 ConnectReaderClient::ConnectReaderClient(string ip1, int port1) : ip(ip1), port(port1) {}
@@ -12,7 +13,7 @@ void ConnectReaderClient::connectToServer() {
         exit(0);
     }
 
-    memset(&serv_addr, 0, sizeof(ip));
+    memset(&serv_addr, 0, sizeof(serv_addr));
 
     serv_addr.sin_family = AF_INET;
     serv_addr.sin_port = htons(port);
@@ -23,7 +24,6 @@ void ConnectReaderClient::connectToServer() {
         printf("\nInvalid address/ Address not supported \n");
         exit(0);
     }
-
     if (connect(socketListener, (struct sockaddr *) &serv_addr, sizeof(serv_addr)) < 0) {
         printf("\nConnection Failed \n");
         exit(0);
@@ -34,17 +34,10 @@ void ConnectReaderClient::closeConnection() {
     close(socketListener);
 }
 
-void ConnectReaderClient::sendCommand(string cmd) {
-    // TODO check first if we can handle client server communication
-    static int a = 1;
-    string hardCoded;
-    if (a == 1) {
-        hardCoded = "set /instrumentation/heading-indicator/offset-deg 20\\r\\n";
-        a++;
-    } else {
-        hardCoded = "get /instrumentation/heading-indicator/offset-deg\\r\\n";
-    }
-
-    send(this->socketListener, hardCoded.c_str(), cmd.length(), 0);
-    //TODO send cmd
+string ConnectReaderClient::sendCommand(string cmd) {
+    send(this->socketListener, cmd.c_str(), cmd.length(), 0);
+    char buffer[1024];
+    int valread;
+    valread = read(socketListener, buffer, sizeof((buffer)));
+    return std::string (buffer);
 }

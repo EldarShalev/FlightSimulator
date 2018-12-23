@@ -19,7 +19,7 @@ public:
 
     ~ConnectionsHandler();
 
-    void send(string cmd);
+    string send(string cmd);
 
     string receive(string key);
 };

@@ -19,18 +19,27 @@ void SetCommand::doCommand(vector<string> str) {
             }
 
             if (shouldBind) {
-                var = new BoundedVar(str[3]);
+                string temp = str[3];
+                string temp2 = temp.substr(1, temp.length() - 2);
+                var = new BoundedVar(temp2, str[0]);
+
             } else {
-                var = new Var(Utils::stringToDouble(str[2]));
+                // Checking in case negative number
+                if (str.at(2) == "-") {
+                    string tempValue = "-" + str[3];
+                    var = new Var(Utils::stringToDouble(tempValue));
+                } else {
+                    var = new Var(Utils::stringToDouble(str[2]));
+                }
+
             }
 
             VarMap::update(str[0], var);
         } else { // we might set with bounded var, therefor we need bounded var get & set
             // If we get bounded var, need to set it's value
             if (VarMap::isVarExists(str.at(0))) {
-                Var *bounded=VarMap::getVar(str.at(0));
+                Var *bounded = VarMap::getVar(str.at(0));
                 bounded->set(Utils::stringToDouble(str[2]));
-
 
             }
 

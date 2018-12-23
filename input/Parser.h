@@ -9,6 +9,7 @@
 #include "maps/CommandsMap.h"
 #include "maps/VarMap.h"
 #include "ShuntingYard.h"
+#include "LoopCommand.h"
 
 class Parser {
 private:

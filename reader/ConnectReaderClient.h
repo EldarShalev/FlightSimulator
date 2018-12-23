@@ -30,7 +30,7 @@ public:
 
     void closeConnection();
 
-    void sendCommand(string cmd);
+    string sendCommand(string cmd);
 };
 
 #endif //SIMULATOR_CONNECTREADERCLIENT_H

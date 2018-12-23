@@ -8,7 +8,7 @@
 #include "commands/OpenServerCommand.h"
 #include "commands/ConnectCommand.h"
 #include "commands/SetCommand.h"
-#include "commands/LoopCommand.h"
+//#include "commands/LoopCommand.h"
 #include "commands/PrintCommand.h"
 #include "commands/SleepCommand.h"
 #include "commands/CreateCommand.h"
@@ -28,7 +28,7 @@ public:
         commands.insert(make_pair("connect", new ConnectCommand()));
         commands.insert(make_pair("var", new CreateCommand()));
         commands.insert(make_pair("=", new SetCommand()));
-        commands.insert(make_pair("while", new LoopCommand()));
+        //commands.insert(make_pair("while", new LoopCommand()));
         commands.insert(make_pair("print", new PrintCommand()));
         commands.insert(make_pair("sleep", new SleepCommand()));
     }

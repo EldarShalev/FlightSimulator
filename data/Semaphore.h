@@ -1,5 +1,5 @@
 //
-// Created by Rotem.Ron on 12/22/2018.
+// Created by Eldar on 12/22/2018.
 //
 
 #ifndef SIMULATOR_SEMAPHORE_H

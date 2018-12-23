@@ -23,6 +23,9 @@ public:
         return "Convert from string failed";
     }
 
+    const char* convertToString() const  throw(){
+        return "Convert to string failed";
+    }
     const char *getFile() const {
         return file;
     }

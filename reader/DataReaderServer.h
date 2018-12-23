@@ -14,8 +14,9 @@
 #include <cstring>
 #include <thread>
 #include <pthread.h>
-#include <map>
 #include <iostream>
+#include <vector>
+#include <unordered_map>
 #include "data/Semaphore.h"
 
 using namespace std;
@@ -28,11 +29,16 @@ private:
     int socketServer;
     int socketClient;
     int serverDescriptor;
-    map<string, string> dataRead;
+    std::unordered_map<string, string> dataRead;
     Semaphore locker;
     pthread_t threadId;
     bool threadContinueRunning;
+    // TODO - delete this
+    mutex m;
+
 public:
+
+
     DataReaderServer(string address1, int port1, int sampleRate1);
 
     void openConnection();
@@ -42,6 +48,12 @@ public:
     string readServerCommand(string key);
 
     void *connectionHandler(void);
+
+    void xmlDataSplitter(string buff);
+
+    void updateMapEachIteration(vector<string> vector1);
+
+
 };
 
 #endif //SIMULATOR_DATAREADERSERVER_H

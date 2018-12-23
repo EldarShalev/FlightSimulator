@@ -11,6 +11,10 @@
  * @return double
  */
 double Utils::stringToDouble(string str) {
+    // TODO for debug purpose, need to delete
+    if (str == "") {
+        return 0;
+    }
     try {
         return stod(str);
     } catch (exception exception1) {
@@ -76,4 +80,22 @@ vector<string> Utils::splitByWhitespaces(string str) {
         }
     }
     return result;
+}
+
+vector<string> Utils::split(string str, char delimiter) {
+    vector<string> result;
+    std::stringstream ss(str);
+    std::string item;
+    while (std::getline(ss, item, delimiter)) {
+        if (item.length() > 0) {
+            result.push_back(trim(item));
+        }
+    }
+    return result;
+}
+
+
+double Utils::parseValueAfterGet(string parse) {
+    vector<string> value = Utils::split(parse, '\'');
+    return stringToDouble(value.at(1));
 }

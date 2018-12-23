@@ -24,7 +24,9 @@ private:
 public:
     Expression *toExpression(string src);
 
-    string infixToPostfix(string src) const;
+    string infixToPostfix(string src) ;
+
+    string parseTheInfix(string src);
 };
 
 #endif //SIMULATOR_SHUNTINGYARD_H

@@ -25,8 +25,8 @@ ConnectionsHandler::~ConnectionsHandler() {
     }
 }
 
-void ConnectionsHandler::send(string cmd) {
-    client->sendCommand(cmd);
+string ConnectionsHandler::send(string cmd) {
+    return client->sendCommand(cmd);
 }
 
 string ConnectionsHandler::receive(string key) {
