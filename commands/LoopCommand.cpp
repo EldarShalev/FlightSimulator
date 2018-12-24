@@ -8,7 +8,9 @@ bool LoopCommand::isOpen = false;
 vector<string> LoopCommand::theCondition;
 vector<vector<string>> LoopCommand::commands;
 
- CommandsMap * LoopCommand::commandsMap;
+ CommandsMap * LoopCommand::commandsMap{
+         commandsMap = new CommandsMap()
+ };
  VarMap LoopCommand::varMap;
  ShuntingYard LoopCommand::shuntingYard;
 
@@ -82,7 +84,6 @@ void LoopCommand::start() {
                     } else {
                         d->doCommand(args);
                     }
-                    return; //No more commands on this line
                 }
             }
 

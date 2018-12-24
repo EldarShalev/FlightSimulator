@@ -7,7 +7,7 @@
 
 DataReaderServer::DataReaderServer(string address1, int port1, int sampleRate1) : address(address1), port(port1),
                                                                                   sampleRate(sampleRate1) {
-    // TODO change all of this logic
+
 
     dataRead.insert(make_pair("/instrumentation/airspeed-indicator/indicated-speed-kt", "0"));
     dataRead.insert(make_pair("/instrumentation/altimeter/indicated-altitude-ft", "0"));

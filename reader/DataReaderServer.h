@@ -33,7 +33,6 @@ private:
     Semaphore locker;
     pthread_t threadId;
     bool threadContinueRunning;
-    // TODO - delete this
     mutex m;
 
 public:

@@ -45,8 +45,7 @@ void Parser::parse(vector<string> input) {
     }
 
 
-
-    if (!LoopCommand::isWhileOpen()){
+    if (!LoopCommand::isWhileOpen()) {
         // Third step - replace all existing vars with their values, unless its the first argument - then its an assignment and we don't need to replace it, so we are skipping it
         for (int i = 1; i < input.size(); ++i) {
             if (varMap.isVarExists(input[i])) {
@@ -68,7 +67,7 @@ void Parser::parse(vector<string> input) {
                 return; //No more commands on this line
             }
         }
-    } else {
+    } else if (input[0] != "while") {
         LoopCommand::addVector(input);
     }
 
@@ -83,7 +82,7 @@ void Parser::parse(vector<string> input) {
 
 vector<string> Parser::createParsedInput(vector<string> &input, int idx) {
     Expression *expression = getExpression(input, idx);
-    vector <string> newInput;
+    vector<string> newInput;
     if (input[idx] == "=") {
         //get var name too!
         newInput.push_back(input[idx - 1]);

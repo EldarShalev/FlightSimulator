@@ -11,7 +11,6 @@
  * @return double
  */
 double Utils::stringToDouble(string str) {
-    // TODO for debug purpose, need to delete
     if (str == "") {
         return 0;
     }
