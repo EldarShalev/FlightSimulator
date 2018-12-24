@@ -93,10 +93,7 @@ void DataReaderServer::closeConnection() {
 
 
 void *DataReaderServer::connectionHandler(void) {
-
-
     int valread;
-
     struct sockaddr_in client;
     //Accept and incoming connection
     puts("Waiting for incoming connections...");
@@ -119,6 +116,7 @@ void *DataReaderServer::connectionHandler(void) {
 
 string DataReaderServer::readServerCommand(string key) {
     // Waiting for locker to finish update the value before we take it from the map
+    locker.wait();
     std::lock_guard<mutex> lockGuard(m);
     cout << "Taking value of " << key << endl;
     string value = dataRead[key];

@@ -5,9 +5,11 @@
 #include "ShuntingYard.h"
 
 Expression *ShuntingYard::toExpression(string src) {
+    // Get the postifx format
     string postfixFormat = infixToPostfix(src);
     stack<Expression *> st;
     string tmpBuf;
+
     for (auto curSym = postfixFormat.begin(); curSym != postfixFormat.end(); ++curSym) {
         if (isdigit(*curSym)) {
             tmpBuf += *curSym;
@@ -18,14 +20,20 @@ Expression *ShuntingYard::toExpression(string src) {
             tmpBuf.clear();
         }
 
-        if (!st.empty() && m_op.isOperator(*curSym) && st.size() >= 2) {
+        if (!st.empty() && *curSym == 'u') {
             Expression *res;
-
+            Expression *mid = st.top();
+            st.pop();
+            res = new Negative(mid);
+            st.push(res);
+            // If we have an operator and the stack is at least with 2 elements
+        } else if (!st.empty() && priority.isOperator(*curSym) && st.size() >= 2) {
+            Expression *res;
             Expression *rightOp = st.top(); // Last value from stack
             st.pop();
             Expression *leftOp = st.top();
             st.pop();
-
+            // Create expression according to the operator we drop
             switch (*curSym) {
                 case '*':
                     res = new Multiply(leftOp, rightOp);
@@ -55,8 +63,8 @@ string ShuntingYard::infixToPostfix(string src) {
         if (*curSym == ' ') {
             continue;
         }
-        // If current symbol is digit
-        if (std::isdigit(*curSym)) {
+        // If current symbol is digit or dot (for float and double)
+        if (std::isdigit(*curSym) || (*curSym == '.')) {
             strOut += *(curSym);
         }
             // If current symbol is open bracket
@@ -75,26 +83,26 @@ string ShuntingYard::infixToPostfix(string src) {
             stackOp.pop(); // Remove open bracket
         }
             // If current symbol is operator and stack is empty
-        else if (m_op.isOperator(*curSym) && stackOp.empty()) {
+        else if (priority.isOperator(*curSym) && stackOp.empty()) {
             stackOp.push(*curSym);
             strOut += std::string(" ");
 
         }
             // If current symbol is operator and stack is not empty
-        else if (m_op.isOperator(*curSym) && !stackOp.empty()) {
-            int topOpPrior = m_op.FindPriorByOp(stackOp.top()); //Priority of operator of TOP stack
-            int curOpPrior = m_op.FindPriorByOp(*curSym); //Priority of operator of current symbol
+        else if (priority.isOperator(*curSym) && !stackOp.empty()) {
+            int topOpPrior = priority.FindPriorByOp(stackOp.top()); //Priority of operator of TOP stack
+            int curOpPrior = priority.FindPriorByOp(*curSym); //Priority of operator of current symbol
 
             while ((topOpPrior >= curOpPrior) && !stackOp.empty()) {
                 strOut += stackOp.top();
                 stackOp.pop();
 
                 if (!stackOp.empty())
-                    topOpPrior = m_op.FindPriorByOp(stackOp.top());
+                    topOpPrior = priority.FindPriorByOp(stackOp.top());
                 else
                     continue;
 
-                curOpPrior = m_op.FindPriorByOp(*curSym);
+                curOpPrior = priority.FindPriorByOp(*curSym);
             }
             stackOp.push(*curSym);
             strOut += std::string(" ");
@@ -109,6 +117,9 @@ string ShuntingYard::infixToPostfix(string src) {
 }
 
 string ShuntingYard::parseTheInfix(string src) {
+    if (src[0] == '-') {
+        src[0] = 'u';
+    }
     string temp2 = "";
     for (std::string::size_type i = 0; i < src.size(); ++i) {
         if (src[i] != ' ') {
@@ -121,6 +132,16 @@ string ShuntingYard::parseTheInfix(string src) {
             temp += "+";
             temp += temp2.substr(i + 2, temp2.size());
             temp2 = temp;
+        }
+    }
+
+    for (std::string::size_type i = 0; i < temp2.size() - 1; ++i) {
+        if (temp2[i] == '(' && temp2[i + 1] == '-') {
+            temp2[i + 1] = 'u';
+            continue;
+        }
+        if (temp2[i] == '-' && !isdigit(temp2[i - 1]) && temp2[i - 1] != '(' && temp2[i - 1] != ')') {
+            temp2[i] = 'u';
         }
     }
     return temp2;

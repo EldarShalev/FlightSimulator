@@ -13,6 +13,7 @@
 
 using namespace std;
 enum Priority {
+    SUPER =3,
     HIGH = 2,
     MED = 1,
     LOW = 0
@@ -29,12 +30,15 @@ private:
     map<char, int> mapPriority;
 
     void init() {
+        mapPriority['u'] = Priority::SUPER;
         //Hight priority
         mapPriority['*'] = Priority::HIGH;
         mapPriority['/'] = Priority::HIGH;
+
         //Med priority
         mapPriority['+'] = Priority::MED;
         mapPriority['-'] = Priority::MED;
+
         //Low priority
         mapPriority['('] = Priority::LOW;
         mapPriority[')'] = Priority::LOW;

@@ -11,6 +11,7 @@
 #include "expressions/Plus.h"
 #include "expressions/Multiply.h"
 #include "expressions/Number.h"
+#include "expressions/Negative.h"
 
 
 #include <string>
@@ -20,7 +21,7 @@ using namespace std;
 class ShuntingYard {
 
 private:
-    OperationPriority m_op;
+    OperationPriority priority;
 public:
     Expression *toExpression(string src);
 
