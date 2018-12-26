@@ -12,7 +12,7 @@ void IfCommand::doCommand(vector<string> str) {
             // Evaluate the vars each new iteration
             vector<string> afterReplace = ParsingUtils::replaceExistingVars(args.at(i));
             if (ParsingUtils::varMap.isVarExists(args.at(i)[0])) {
-                vector<string> afterCalc=ParsingUtils::createParsedInput(afterReplace,1);
+                vector<string> afterCalc=ParsingUtils::createParsedInput(afterReplace,2);
                 commands.at(i)->doCommand(afterCalc);
             } else{
                 commands.at(i)->doCommand(afterReplace);

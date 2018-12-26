@@ -28,6 +28,8 @@ public:
     string infixToPostfix(string src) ;
 
     string parseTheInfix(string src);
+
+    ~ShuntingYard();
 };
 
 #endif //SIMULATOR_SHUNTINGYARD_H

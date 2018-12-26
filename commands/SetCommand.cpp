@@ -10,9 +10,7 @@ void SetCommand::doCommand(vector<string> str) {
         if (!(str.size() == 4 || str.size() == 3)) {
             throw MyException("Can accept only 4 arguments", __func__, "SetCommand");
         }
-
         if (str.size() == 4) {
-            Var *var;
             bool shouldBind = false;
             // If we need to bind
             if (str[2] == "bind") {
@@ -28,9 +26,10 @@ void SetCommand::doCommand(vector<string> str) {
                 // Checking in case negative number
                 if (str.at(2) == "-") {
                     string tempValue = "-" + str[3];
-                    var = new Var(Utils::stringToDouble(tempValue));
+                    double temp1=Utils::stringToDouble(tempValue);
+                    var->set(temp1);
                 } else {
-                    var = new Var(Utils::stringToDouble(str[2]));
+                    var ->set(Utils::stringToDouble(str[2]));
                 }
 
             }
@@ -41,7 +40,6 @@ void SetCommand::doCommand(vector<string> str) {
             if (VarMap::isVarExists(str.at(0))) {
                 Var *bounded = VarMap::getVar(str.at(0));
                 bounded->set(Utils::stringToDouble(str[2]));
-
             }
 
         }

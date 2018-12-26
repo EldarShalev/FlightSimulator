@@ -76,29 +76,14 @@ bool ConditionCommand::checkCondition() {
 
     }
     // Create left expression
-    if (left.size() == 1) {
-        if (left.at(0)[0] == '-') {
-            leftexp = (new Negative(new Number(stod(left.at(0)))));
-        } else
-            leftexp = new Number(stod(left.at(0)));
-    } else {
-        leftexp = ParsingUtils::getExpression(left, 0);
-    }
+    leftexp = ParsingUtils::getExpression(left, 0);
+    rightexp = ParsingUtils::getExpression(right, 0);
 
-    // Create right expression
-    if (right.size() == 1) {
-        if (right.at(0)[0] == '-') {
-            rightexp = (new Negative(new Number(stod(right.at(0)))));
-        } else
-            rightexp = new Number(stod(right.at(0)));
-    } else {
-        rightexp = ParsingUtils::getExpression(right, 0);
-    }
+
     // check the logic expression
     if (place2 != -1) {
         string temp2 = result.at(place) + result.at(place + 1);
         return (ParsingUtils::checkExpression(leftexp, rightexp, temp2));
-
     }
     // check the logic expression
     return (ParsingUtils::checkExpression(leftexp, rightexp, result.at(place)));

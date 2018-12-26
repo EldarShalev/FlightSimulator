@@ -99,6 +99,25 @@ vector<string> Utils::split(string str, char delimiter) {
 
 
 double Utils::parseValueAfterGet(string parse) {
-    vector<string> value = Utils::split(parse, '\'');
-    return stringToDouble(value.at(1));
+    string value = Utils::split2(parse, '\'');
+    return stringToDouble(value);
+}
+
+string Utils::split2(string str, char delimiter) {
+    bool foundDelimiter = false;
+    string temp = "";
+    for (string::iterator it = str.begin(); it != str.end(); ++it) {
+        if (*it == delimiter) {
+            if (foundDelimiter) {
+                return temp;
+            } else {
+                foundDelimiter = true;
+                continue;
+            }
+        }
+        if (foundDelimiter) {
+            temp += *it;
+        }
+    }
+    return temp;
 }

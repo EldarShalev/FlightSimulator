@@ -118,7 +118,7 @@ void Parser::createCondition(vector<string> input) {
 void Parser::createWhileCondition(vector<string> input) {
     // if this is the first condition we found, set the member.
     if (!loopConditionFound) {
-        conditionCommand = commandsMap->getCmdCommand("while");
+        conditionCommand = new LoopCommand();;
         conditionCommand->setCondition(input);
         conditionCommand->open();
         loopConditionFound = true;
@@ -135,7 +135,7 @@ void Parser::createWhileCondition(vector<string> input) {
 void Parser::createIfCondition(vector<string> input) {
     // if this is the first condition we found, set the member.
     if (!loopConditionFound) {
-        conditionCommand = commandsMap->getCmdCommand("if");
+        conditionCommand = new IfCommand();
         conditionCommand->setCondition(input);
         conditionCommand->open();
         loopConditionFound = true;

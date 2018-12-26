@@ -32,7 +32,7 @@ public:
 
     // For get command
     double get() {
-        char *conversion = new char[path.length() + 10];
+        char *conversion = new char[path.length() + 1024];
         sprintf(conversion, "get %s\r\n", path.c_str());
         // Send the command and get output from sending.
         string value2 = ConnectionsManager::send(conversion);
@@ -40,6 +40,7 @@ public:
             double dvalue = Utils::parseValueAfterGet(value2);
             cout << "Value is " << dvalue << endl;
             Var::set(dvalue);
+            delete conversion;
             return dvalue;
         } catch (MyException &e1) {
             cout << "BoundedVar : " << __func__ << " : ";

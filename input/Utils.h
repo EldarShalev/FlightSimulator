@@ -26,6 +26,8 @@ public:
     static void buildPathFromVector(vector<string> input, string &output);
     static double parseValueAfterGet(string parse);
     static vector<string> split(string str, char delimiter);
+    static string split2(string str, char delimiter);
+
 };
 
 #endif //SIMULATOR_UTILS_H

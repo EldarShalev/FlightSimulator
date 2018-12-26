@@ -35,9 +35,9 @@ vector<string> ParsingUtils::createParsedInput(vector<string> &input, int idx) {
     // Create parsed of given input
     Expression *expression = getExpression(input, idx);
     vector<string> newInput;
-    if (input[idx] == "=") {
+    if (input[idx-1] == "=") {
         //get var name too!
-        newInput.push_back(input[idx - 1]);
+        newInput.push_back(input[idx - 2]);
     }
     newInput.push_back(input[idx]);
     newInput.push_back(Utils::doubleToString(expression->calculate()));
@@ -54,7 +54,7 @@ vector<string> ParsingUtils::createParsedInput(vector<string> &input, int idx) {
  */
 Expression *ParsingUtils::getExpression(vector<string> &input, int idx) {
     // Get expression of given vector
-    vector<string> smellsLikeAnExpression(input.begin() + idx + 1, input.end());
+    vector<string> smellsLikeAnExpression(input.begin() + idx, input.end());
     string joinedString;
     Utils::join(smellsLikeAnExpression, ' ', joinedString);
     Expression *expression = shuntingYard.toExpression(joinedString);
@@ -66,31 +66,45 @@ bool ParsingUtils::checkExpression(Expression *left, Expression *right, string l
     // Check all logic condition
     if (logicCondition == "==") {
         Equals *e = new Equals(left, right);
-        return (e->calculate() == 1);
+        bool flg = (e->calculate() == 1);
+        delete e;
+        return flg;
     } else if (logicCondition == "<") {
         LessThan *e = new LessThan(left, right);
-        bool flg= (e->calculate() == 1);
+        bool flg = (e->calculate() == 1);
         delete e;
         return flg;
     } else if (logicCondition == ">") {
-        GreaterThan *e=new GreaterThan(left, right);
-        return (e->calculate() == 1);
+        GreaterThan *e = new GreaterThan(left, right);
+        bool flg = (e->calculate() == 1);
+        delete e;
+        return flg;
     } else if (logicCondition == "!=") {
-        NotEquals *e= new NotEquals(left, right);
-        return (e->calculate() == 1);
+        NotEquals *e = new NotEquals(left, right);
+        bool flg = (e->calculate() == 1);
+        delete e;
+        return flg;
     } else if (logicCondition == "&&") {
-        And *e=new And(left, right);
-        return (e->calculate() == 1);
+        And *e = new And(left, right);
+        bool flg = (e->calculate() == 1);
+        delete e;
+        return flg;
     } else if (logicCondition == "||") {
-        Or *e=new Or(left, right);
-        return (e->calculate() == 1);
+        Or *e = new Or(left, right);
+        bool flg = (e->calculate() == 1);
+        delete e;
+        return flg;
     } else if (logicCondition == "<=") {
         LessThan *e = new LessThan(left, right);
         Equals *e2 = new Equals(left, right);
-        return (e->calculate() == 1 || e2->calculate());
+        bool flg = (e->calculate() == 1 || e2->calculate() == 1);
+        delete e;
+        return flg;
     } else if (logicCondition == ">=") {
-        GreaterThan *e=new GreaterThan(left, right);
-        Equals *e2=new Equals(left, right);
-        return (e->calculate() == 1 || e2->calculate());
+        GreaterThan *e = new GreaterThan(left, right);
+        Equals *e2 = new Equals(left, right);
+        bool flg = (e->calculate() == 1 || e2->calculate() == 1);
+        delete e;
+        return flg;
     }
 }
