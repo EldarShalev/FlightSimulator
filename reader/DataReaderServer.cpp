@@ -124,6 +124,11 @@ void DataReaderServer::xmlDataSplitter(string buff) {
 
 }
 
+
+/**
+ * Map of all vectors and the path-binding
+ * @param vector1 a given vector of details.
+ */
 void DataReaderServer::updateMapEachIteration(vector<string> vector1) {
     dataRead["/instrumentation/airspeed-indicator/indicated-speed-kt"] = (vector1.at(0));
     dataRead["/instrumentation/altimeter/indicated-altitude-ft"] = (vector1.at(1));

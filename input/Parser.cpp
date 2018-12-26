@@ -36,9 +36,6 @@ void Parser::parse(vector<string> input) {
         vector<string> args1 = ParsingUtils::replaceExistingVars(input);
         input = args1;
     }
-
-
-
     // Step Five : - find the command, there should only be 1 per line, unless its var (or bounded var)
     for (int i = 0; i < input.size(); ++i) {
         if (commandsMap->getCommand(input[i]) != NULL) {
@@ -65,7 +62,6 @@ void Parser::parse(vector<string> input) {
 
 
     // If we found the bracket to finish the loop
-
     if (input[0] == "}") {
         conditionCommand->close();
     }
@@ -73,9 +69,7 @@ void Parser::parse(vector<string> input) {
         loopConditionFound = false;
         conditionCommand->doCommand(input);
         conditionCommand = NULL;
-
     }
-
 }
 
 
@@ -115,8 +109,7 @@ void Parser::bind(vector<string> input1) {
 void Parser::createCondition(vector<string> input) {
     if (input.at(0) == "while") {
         createWhileCondition(input);
-    }
-    else if (input.at(0) == "if") {
+    } else if (input.at(0) == "if") {
         createIfCondition(input);
     }
 
@@ -133,7 +126,7 @@ void Parser::createWhileCondition(vector<string> input) {
         ConditionCommand *cmd1 = new LoopCommand();
         cmd1->setCondition(input);
         cmd1->open();
-        conditionCommand->addCommand(cmd1,input);
+        conditionCommand->addCommand(cmd1, input);
         conditionCommand->addConditionCommandToNested(cmd1);
     }
 
@@ -150,7 +143,7 @@ void Parser::createIfCondition(vector<string> input) {
         ConditionCommand *cmd1 = new IfCommand();
         cmd1->setCondition(input);
         cmd1->open();
-        conditionCommand->addCommand(cmd1,input);
+        conditionCommand->addCommand(cmd1, input);
         conditionCommand->addConditionCommandToNested(cmd1);
 
     }

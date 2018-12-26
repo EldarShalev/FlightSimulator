@@ -7,6 +7,7 @@
 void ConnectCommand::doCommand(vector<string> str) {
 
     try {
+        // Simple parsing and send to connect reader
         string ip = str.at(1);
         int port = Utils::stringToInt(str.at(2));
         ConnectionsManager::connectReaderClient(ip, port);

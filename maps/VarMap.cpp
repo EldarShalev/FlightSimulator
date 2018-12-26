@@ -6,10 +6,12 @@
 
 map<string, Var *> VarMap::symbolTable;
 
+// Update Map
 void VarMap::update(string varName, Var *var) {
     symbolTable[varName] = var;
 }
 
+// Add to Map
 void VarMap::add(string varName, Var *var) {
     symbolTable.insert(make_pair(varName, var));
 }
@@ -28,6 +30,7 @@ Var *VarMap::getVar(string var) {
     return NULL;
 }
 
+// Delete all allocated vars
 void VarMap::release() {
     for (map<string, Var *>::iterator it = symbolTable.begin(); it != symbolTable.end(); ++it) {
         delete it->second;

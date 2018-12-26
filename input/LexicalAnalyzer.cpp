@@ -32,7 +32,7 @@ vector<string> LexicalAnalyzer::analyze(string input) {
                     result.insert(result.end(), jres.begin(), jres.end());
                 }
             } else if (find(result.begin(), result.end(), input) != result.end()) {
-                // do nothing, I hate C++
+                // do nothing (like return; )
             } else if (input != "\r") {
                 vector<string> splitted = Utils::splitByWhitespaces(input);
                 if(!splitted.empty()) {

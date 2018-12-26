@@ -32,6 +32,7 @@ vector<string> ParsingUtils::replaceExistingVars(vector<string> input) {
  * @return caclculate of the parsed input.
  */
 vector<string> ParsingUtils::createParsedInput(vector<string> &input, int idx) {
+    // Create parsed of given input
     Expression *expression = getExpression(input, idx);
     vector<string> newInput;
     if (input[idx] == "=") {
@@ -52,6 +53,7 @@ vector<string> ParsingUtils::createParsedInput(vector<string> &input, int idx) {
  * @return Expression with SuntingYard Algorithm.
  */
 Expression *ParsingUtils::getExpression(vector<string> &input, int idx) {
+    // Get expression of given vector
     vector<string> smellsLikeAnExpression(input.begin() + idx + 1, input.end());
     string joinedString;
     Utils::join(smellsLikeAnExpression, ' ', joinedString);
@@ -61,6 +63,7 @@ Expression *ParsingUtils::getExpression(vector<string> &input, int idx) {
 
 bool ParsingUtils::checkExpression(Expression *left, Expression *right, string logicCondition) {
 
+    // Check all logic condition
     if (logicCondition == "==") {
         Equals *e = new Equals(left, right);
         return (e->calculate() == 1);

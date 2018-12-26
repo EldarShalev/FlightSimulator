@@ -79,6 +79,12 @@ vector<string> Utils::splitByWhitespaces(string str) {
     return result;
 }
 
+/**
+ *
+ * @param str given string.
+ * @param delimiter a delimiter to check.
+ * @return vector of splitted strings by given delimiter.
+ */
 vector<string> Utils::split(string str, char delimiter) {
     vector<string> result;
     std::stringstream ss(str);

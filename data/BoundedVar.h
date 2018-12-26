@@ -20,23 +20,25 @@ public:
     BoundedVar(const string &path, string name) : path(path), nameOfVar(name) {}
 
     void set(double value) {
+        // Set with Var command
         Var::set(value);
+        // Buffer for sending the set command
         char *conversion = new char[path.size() + 1024];
         sprintf(conversion, "set %s %s\r\n", path.c_str(), Utils::doubleToString(value).c_str());
-
-
+        // Send the "set" command with all the relevant path and details.
         string value1 = ConnectionsManager::send(conversion);
         delete conversion;
     }
 
+    // For get command
     double get() {
         char *conversion = new char[path.length() + 10];
         sprintf(conversion, "get %s\r\n", path.c_str());
+        // Send the command and get output from sending.
         string value2 = ConnectionsManager::send(conversion);
-
-        try {
+        try { // try to evaluate the returned value
             double dvalue = Utils::parseValueAfterGet(value2);
-            cout << "Value is " << dvalue <<endl;
+            cout << "Value is " << dvalue << endl;
             Var::set(dvalue);
             return dvalue;
         } catch (MyException &e1) {

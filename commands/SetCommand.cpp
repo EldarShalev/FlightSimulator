@@ -14,6 +14,7 @@ void SetCommand::doCommand(vector<string> str) {
         if (str.size() == 4) {
             Var *var;
             bool shouldBind = false;
+            // If we need to bind
             if (str[2] == "bind") {
                 shouldBind = true;
             }

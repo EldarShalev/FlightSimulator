@@ -5,22 +5,21 @@
 #include "OperationPriority.h"
 
 int OperationPriority::FindPriorByOp(char op) const {
+    // Find the operator priority
     int prior;
     auto find = mapPriority.find(op);
-    if (find != mapPriority.end())
-    {
+    if (find != mapPriority.end()) {
         prior = find->second;
         return prior;
-    }
-    else
-        throw MyException("no file",__func__,"OperationPriority");
+    } else
+        throw MyException("no file", __func__, "OperationPriority");
 }
 
 bool OperationPriority::isOperator(char sym) const {
+    // Check if operator
     bool isFound = false;
     auto find = mapPriority.find(sym);
-    if (find != mapPriority.end())
-    {
+    if (find != mapPriority.end()) {
         isFound = true;
         return isFound;
     }

@@ -15,12 +15,14 @@ private:
     unsigned long count_ = 0; // Initialized as locked.
 
 public:
+    // Notify another thread
     void notify() {
         std::lock_guard<decltype(mutex_)> lock(mutex_);
         ++count_;
         condition_.notify_one();
     }
 
+    // Wait for another thread to finish
     void wait() {
         std::unique_lock<decltype(mutex_)> lock(mutex_);
         while(!count_) // Handle spurious wake-ups.
@@ -28,6 +30,7 @@ public:
         --count_;
     }
 
+    // Try Wait for another thread to finish
     bool try_wait() {
         std::lock_guard<decltype(mutex_)> lock(mutex_);
         if(count_) {

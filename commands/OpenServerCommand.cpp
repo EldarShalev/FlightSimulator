@@ -13,6 +13,7 @@ void OpenServerCommand::doCommand(vector<string> str) {
         if (str.size() != 3) {
             throw MyException("Can accept only 3 arguments", __func__, "OpenServerCommand");
         }
+        // Simple opening server parsing and send to connect data reader method
         int port = Utils::stringToInt(str.at(1));
         int sampleRate = Utils::stringToInt(str.at(2));
         ConnectionsManager::connectDataReaderServer("127.0.0.1", port, sampleRate);

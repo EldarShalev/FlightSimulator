@@ -10,15 +10,18 @@ Expression *ShuntingYard::toExpression(string src) {
     stack<Expression *> st;
     string tmpBuf;
 
-    if (src.length() == 1 || src.length()==2) {
+    // TODO - bug here for length > 2 and one number
+    // Edge case for one number
+    if (src.length() == 1 || src.length() == 2) {
         if (src[0] == 'u') {
-            string temp(src.substr(1,src.length()));
+            string temp(src.substr(1, src.length()));
             st.push(new Negative(new Number(stod(temp))));
         } else {
             st.push(new Number((stod(src))));
         }
     }
 
+    // For numbers or '.'
     for (auto curSym = postfixFormat.begin(); curSym != postfixFormat.end(); ++curSym) {
         if (isdigit(*curSym) || *curSym == '.') {
             tmpBuf += *curSym;
@@ -29,6 +32,7 @@ Expression *ShuntingYard::toExpression(string src) {
             tmpBuf.clear();
         }
 
+        // For negative
         if (!st.empty() && *curSym == 'u') {
             Expression *res;
             Expression *mid = st.top();
@@ -60,6 +64,7 @@ Expression *ShuntingYard::toExpression(string src) {
             st.push(res);
         }
     }
+    // The final expression will be top
     return st.top();
 }
 
@@ -126,6 +131,7 @@ string ShuntingYard::infixToPostfix(string src) {
 }
 
 string ShuntingYard::parseTheInfix(string src) {
+    // Some improvment to Infix before we convert to postfix
     if (src[0] == '-') {
         src[0] = 'u';
     }
