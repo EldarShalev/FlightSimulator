@@ -45,9 +45,7 @@ string Utils::trim(const string str) {
 }
 
 string Utils::doubleToString(double number) {
-    ostringstream strs;
-    strs << number;
-    return strs.str();
+    return std::to_string(number);
 }
 
 void Utils::join(vector<string> input, char delimiter, string &output) {

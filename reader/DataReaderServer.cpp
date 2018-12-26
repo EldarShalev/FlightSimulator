@@ -70,7 +70,7 @@ void DataReaderServer::openConnection() {
     }
 
     //Accept and incoming connection
-    puts("Waiting for incoming connections...");
+    cout << ("Waiting for incoming connections...") << endl;
     socklen_t addrlen = sizeof(sockaddr_in);
 
     if (socketClient = accept(serverDescriptor, (struct sockaddr *) &client, &addrlen)) {

@@ -22,7 +22,7 @@ using namespace std;
 class CommandsMap {
 public:
     map<string, Command *> commands;
-    map<string, ConditionCommand*> cmdCommands;
+    map<string, ConditionCommand*> conCommands;
 
 public:
     CommandsMap() {
@@ -33,8 +33,8 @@ public:
         commands.insert(make_pair("print", new PrintCommand()));
         commands.insert(make_pair("sleep", new SleepCommand()));
 
-        cmdCommands.insert(make_pair("while", new LoopCommand()));
-        cmdCommands.insert(make_pair("if", new IfCommand()));
+        conCommands.insert(make_pair("while", new LoopCommand()));
+        conCommands.insert(make_pair("if", new IfCommand()));
     }
 
     virtual Command *getCommand(string cmd) {
@@ -45,8 +45,8 @@ public:
     }
 
     virtual ConditionCommand *getCmdCommand(string cmd) {
-        if (cmdCommands.count(cmd) != 0) {
-            return cmdCommands[cmd];
+        if (conCommands.count(cmd) != 0) {
+            return  conCommands[cmd];
         }
         return NULL;
     }
@@ -56,7 +56,7 @@ public:
             delete it->second;
         }
 
-        for (map<string, ConditionCommand *>::iterator it = cmdCommands.begin(); it != cmdCommands.end(); ++it) {
+        for (map<string, ConditionCommand *>::iterator it = conCommands.begin(); it != conCommands.end(); ++it) {
             delete it->second;
         }
     }

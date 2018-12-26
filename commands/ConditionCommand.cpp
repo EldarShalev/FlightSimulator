@@ -16,9 +16,10 @@ void ConditionCommand::setCondition(const vector<string> &condtion) {
 void ConditionCommand::addCommand(Command *cmd, vector<string> args1) {
     if (nested.size() > 0) {
         nested[nested.size() - 1]->addCommand(cmd, args1);
-    }
+    } else {
     commands.push_back(cmd);
     args.push_back(args1);
+    }
 }
 
 bool ConditionCommand::isOpen() {
@@ -60,6 +61,14 @@ bool ConditionCommand::checkCondition() {
     int place = seekForExpression(result);
     vector<string> left(result.begin() + 1, result.begin() + place);
     vector<string> right(result.begin() + place + 1, result.end());
+    // Verify for only one expression, and not two (like <=, ==, etc)
+    int place2 = seekForExpression(right);
+    if (place2 != -1) {
+
+        vector<string> temp(right.begin() + 1, right.end());
+        right = temp;
+
+    }
     if (left.size() == 1) {
         if (left.at(0)[0] == '-') {
             leftexp = (new Negative(new Number(stod(left.at(0)))));
@@ -77,6 +86,11 @@ bool ConditionCommand::checkCondition() {
     } else {
         rightexp = ParsingUtils::getExpression(right, 0);
     }
+    if (place2 != -1) {
+        string temp2 = result.at(place) + result.at(place + 1);
+        return (ParsingUtils::checkExpression(leftexp, rightexp, temp2));
+
+    }
     return (ParsingUtils::checkExpression(leftexp, rightexp, result.at(place)));
 
 
@@ -89,9 +103,10 @@ void ConditionCommand::addConditionCommandToNested(ConditionCommand *conditionCo
 int ConditionCommand::seekForExpression(vector<string> args2) {
     // We use regulat for loop and not iterator because we need the number
     for (int i = 0; i < args2.size(); i++) {
-        if (args2[i] == "<" || args2[i] == ">" || args2[i] == "==" || args2[i] == ">=" || args2[i] == "<=" ||
-            args2[i] == "!=" || args2[i] == "&&" || args2[i] == "||") {
+        if (args2[i] == "<" || args2[i] == ">" || args2[i] == "=" || args2[i] == ">=" || args2[i] == "<=" ||
+            args2[i] == "!" || args2[i] == "&&" || args2[i] == "||") {
             return i;
         }
     }
+    return -1;
 }

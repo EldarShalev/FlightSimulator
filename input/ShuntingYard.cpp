@@ -10,8 +10,17 @@ Expression *ShuntingYard::toExpression(string src) {
     stack<Expression *> st;
     string tmpBuf;
 
+    if (src.length() == 1 || src.length()==2) {
+        if (src[0] == 'u') {
+            string temp(src.substr(1,src.length()));
+            st.push(new Negative(new Number(stod(temp))));
+        } else {
+            st.push(new Number((stod(src))));
+        }
+    }
+
     for (auto curSym = postfixFormat.begin(); curSym != postfixFormat.end(); ++curSym) {
-        if (isdigit(*curSym)) {
+        if (isdigit(*curSym) || *curSym == '.') {
             tmpBuf += *curSym;
         } else {
             if (!tmpBuf.empty()) {
@@ -126,7 +135,7 @@ string ShuntingYard::parseTheInfix(string src) {
             temp2 += src[i];
         }
     }
-    if (src.length()>2) {
+    if (src.length() > 2) {
         for (std::string::size_type i = 0; i < temp2.size() - 1; ++i) {
             if (temp2[i] == '-' && temp2[i + 1] == '-') {
                 string temp = temp2.substr(0, i);

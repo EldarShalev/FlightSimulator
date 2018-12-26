@@ -43,7 +43,7 @@ void Parser::parse(vector<string> input) {
     for (int i = 0; i < input.size(); ++i) {
         if (commandsMap->getCommand(input[i]) != NULL) {
             Command *cmd = commandsMap->getCommand(input[i]);
-            if (conditionCommand->isOpen()) {
+            if (loopConditionFound) {
                 if (input[input.size() - 1] == "}") {
                     vector<string> args(input.begin(), input.end() - 1);
                     input = args;
@@ -123,30 +123,34 @@ void Parser::createCondition(vector<string> input) {
 }
 
 void Parser::createWhileCondition(vector<string> input) {
+    // if this is the first condition we found, set the member.
     if (!loopConditionFound) {
         conditionCommand = commandsMap->getCmdCommand("while");
         conditionCommand->setCondition(input);
         conditionCommand->open();
         loopConditionFound = true;
     } else {
-        ConditionCommand *cmd1 = commandsMap->getCmdCommand("while");
+        ConditionCommand *cmd1 = new LoopCommand();
         cmd1->setCondition(input);
         cmd1->open();
+        conditionCommand->addCommand(cmd1,input);
         conditionCommand->addConditionCommandToNested(cmd1);
     }
 
 }
 
 void Parser::createIfCondition(vector<string> input) {
+    // if this is the first condition we found, set the member.
     if (!loopConditionFound) {
         conditionCommand = commandsMap->getCmdCommand("if");
         conditionCommand->setCondition(input);
         conditionCommand->open();
         loopConditionFound = true;
     } else {
-        ConditionCommand *cmd1 = commandsMap->getCmdCommand("if");
+        ConditionCommand *cmd1 = new IfCommand();
         cmd1->setCondition(input);
         cmd1->open();
+        conditionCommand->addCommand(cmd1,input);
         conditionCommand->addConditionCommandToNested(cmd1);
 
     }

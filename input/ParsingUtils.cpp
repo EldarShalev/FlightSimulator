@@ -62,30 +62,30 @@ Expression *ParsingUtils::getExpression(vector<string> &input, int idx) {
 bool ParsingUtils::checkExpression(Expression *left, Expression *right, string logicCondition) {
 
     if (logicCondition == "==") {
-        Equals e(left, right);
-        return (e.calculate() == 1);
+        Equals *e = new Equals(left, right);
+        return (e->calculate() == 1);
     } else if (logicCondition == "<") {
-        LessThan e(left, right);
-        return (e.calculate() == 1);
-    }else if (logicCondition == ">") {
-        GreaterThan e(left, right);
-        return (e.calculate() == 1);
-    }else if (logicCondition == "!=") {
-        NotEquals e(left, right);
-        return (e.calculate() == 1);
-    }else if (logicCondition == "&&") {
-        And e(left, right);
-        return (e.calculate() == 1);
-    }else if (logicCondition == "||") {
-        Or e(left, right);
-        return (e.calculate() == 1);
+        LessThan *e = new LessThan(left, right);
+        return (e->calculate() == 1);
+    } else if (logicCondition == ">") {
+        GreaterThan *e=new GreaterThan(left, right);
+        return (e->calculate() == 1);
+    } else if (logicCondition == "!=") {
+        NotEquals *e= new NotEquals(left, right);
+        return (e->calculate() == 1);
+    } else if (logicCondition == "&&") {
+        And *e=new And(left, right);
+        return (e->calculate() == 1);
+    } else if (logicCondition == "||") {
+        Or *e=new Or(left, right);
+        return (e->calculate() == 1);
     } else if (logicCondition == "<=") {
-        LessThan e(left, right);
-        Equals e2(left,right);
-        return (e.calculate() == 1 || e2.calculate());
-    }else if (logicCondition == ">=") {
-        GreaterThan e(left, right);
-        Equals e2(left,right);
-        return (e.calculate() == 1 || e2.calculate());
+        LessThan *e = new LessThan(left, right);
+        Equals *e2 = new Equals(left, right);
+        return (e->calculate() == 1 || e2->calculate());
+    } else if (logicCondition == ">=") {
+        GreaterThan *e=new GreaterThan(left, right);
+        Equals *e2=new Equals(left, right);
+        return (e->calculate() == 1 || e2->calculate());
     }
 }

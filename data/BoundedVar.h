@@ -21,7 +21,7 @@ public:
 
     void set(double value) {
         Var::set(value);
-        char *conversion = new char[path.length() + 10];
+        char *conversion = new char[path.size() + 1024];
         sprintf(conversion, "set %s %s\r\n", path.c_str(), Utils::doubleToString(value).c_str());
 
 
