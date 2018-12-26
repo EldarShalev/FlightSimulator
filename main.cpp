@@ -2,7 +2,7 @@
 #include <fstream>
 #include "input/LexicalAnalyzer.h"
 #include "input/Parser.h"
-
+#include "maps/VarMap.h"
 using namespace std;
 
 void inputFromCli();
@@ -19,6 +19,7 @@ int main(int argc, char *argv[]) {
     }
 
     cout << "Aurvua, Shoshana!" << endl;
+    VarMap::release();
     return 0;
 }
 

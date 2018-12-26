@@ -25,7 +25,7 @@ public:
 
     static void add(string varName, Var *var);
 
-    void release();
+    static void release();
 };
 
 #endif //SIMULATOR_VARMAP_H

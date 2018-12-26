@@ -69,7 +69,9 @@ bool ParsingUtils::checkExpression(Expression *left, Expression *right, string l
         return (e->calculate() == 1);
     } else if (logicCondition == "<") {
         LessThan *e = new LessThan(left, right);
-        return (e->calculate() == 1);
+        bool flg= (e->calculate() == 1);
+        delete e;
+        return flg;
     } else if (logicCondition == ">") {
         GreaterThan *e=new GreaterThan(left, right);
         return (e->calculate() == 1);

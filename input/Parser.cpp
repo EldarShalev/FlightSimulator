@@ -154,6 +154,6 @@ void Parser::createIfCondition(vector<string> input) {
  * Destructor
  */
 Parser::~Parser() {
-    delete (commandsMap);
-    delete (conditionCommand);
+    delete commandsMap;
+    delete conditionCommand;
 }
