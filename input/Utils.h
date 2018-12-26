@@ -9,8 +9,9 @@
 #include <vector>
 #include <iterator>
 #include <sstream>
+#include <algorithm>
+#include <iostream>
 #include "data/MyException.h"
-
 
 using namespace std;
 
@@ -27,7 +28,6 @@ public:
     static double parseValueAfterGet(string parse);
     static vector<string> split(string str, char delimiter);
     static string split2(string str, char delimiter);
-
 };
 
 #endif //SIMULATOR_UTILS_H

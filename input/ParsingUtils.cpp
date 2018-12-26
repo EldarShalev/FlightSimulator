@@ -4,7 +4,7 @@
 
 #include "ParsingUtils.h"
 
-// Decleration
+// Deceleration
 VarMap ParsingUtils::varMap;
 ShuntingYard ParsingUtils::shuntingYard;
 
@@ -29,7 +29,7 @@ vector<string> ParsingUtils::replaceExistingVars(vector<string> input) {
  *
  * @param input a given input.
  * @param idx id.
- * @return caclculate of the parsed input.
+ * @return calculate of the parsed input.
  */
 vector<string> ParsingUtils::createParsedInput(vector<string> &input, int idx) {
     // Create parsed of given input
@@ -50,7 +50,7 @@ vector<string> ParsingUtils::createParsedInput(vector<string> &input, int idx) {
  *
  * @param input a given input.
  * @param idx given id.
- * @return Expression with SuntingYard Algorithm.
+ * @return Expression with ShuntingYard Algorithm.
  */
 Expression *ParsingUtils::getExpression(vector<string> &input, int idx) {
     // Get expression of given vector
@@ -62,49 +62,44 @@ Expression *ParsingUtils::getExpression(vector<string> &input, int idx) {
 }
 
 bool ParsingUtils::checkExpression(Expression *left, Expression *right, string logicCondition) {
-
     // Check all logic condition
     if (logicCondition == "==") {
         Equals *e = new Equals(left, right);
-        bool flg = (e->calculate() == 1);
-        delete e;
-        return flg;
+        return calculateExpression(e);
     } else if (logicCondition == "<") {
         LessThan *e = new LessThan(left, right);
-        bool flg = (e->calculate() == 1);
-        delete e;
-        return flg;
+        return calculateExpression(e);
     } else if (logicCondition == ">") {
         GreaterThan *e = new GreaterThan(left, right);
-        bool flg = (e->calculate() == 1);
-        delete e;
-        return flg;
+        return calculateExpression(e);
     } else if (logicCondition == "!=") {
         NotEquals *e = new NotEquals(left, right);
-        bool flg = (e->calculate() == 1);
-        delete e;
-        return flg;
+        return calculateExpression(e);
     } else if (logicCondition == "&&") {
         And *e = new And(left, right);
-        bool flg = (e->calculate() == 1);
-        delete e;
-        return flg;
+        return calculateExpression(e);
     } else if (logicCondition == "||") {
         Or *e = new Or(left, right);
-        bool flg = (e->calculate() == 1);
-        delete e;
-        return flg;
+        return calculateExpression(e);
     } else if (logicCondition == "<=") {
-        LessThan *e = new LessThan(left, right);
-        Equals *e2 = new Equals(left, right);
-        bool flg = (e->calculate() == 1 || e2->calculate() == 1);
-        delete e;
-        return flg;
+        LessThan *less = new LessThan(left, right);
+        Equals *equals = new Equals(left, right);
+        Or *e = new Or(less, equals);
+        return calculateExpression(e);
     } else if (logicCondition == ">=") {
-        GreaterThan *e = new GreaterThan(left, right);
-        Equals *e2 = new Equals(left, right);
-        bool flg = (e->calculate() == 1 || e2->calculate() == 1);
-        delete e;
-        return flg;
+        GreaterThan *greater = new GreaterThan(left, right);
+        Equals *equals = new Equals(left, right);
+        Or *e = new Or(greater, equals);
+        return calculateExpression(e);
     }
+}
+
+bool ParsingUtils::calculateExpression(Expression *e) {
+    bool flg = (e->calculate() == 1);
+    delete e;
+    return flg;
+}
+
+void ParsingUtils::release() {
+    varMap.release();
 }

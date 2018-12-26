@@ -17,6 +17,8 @@ void SetCommand::doCommand(vector<string> str) {
                 shouldBind = true;
             }
 
+            Var *var;
+
             if (shouldBind) {
                 string temp = str[3];
                 string temp2 = temp.substr(1, temp.length() - 2);
@@ -26,12 +28,10 @@ void SetCommand::doCommand(vector<string> str) {
                 // Checking in case negative number
                 if (str.at(2) == "-") {
                     string tempValue = "-" + str[3];
-                    double temp1=Utils::stringToDouble(tempValue);
-                    var->set(temp1);
+                    var = new Var(Utils::stringToDouble(tempValue));
                 } else {
-                    var ->set(Utils::stringToDouble(str[2]));
+                    var = new Var(Utils::stringToDouble(str[2]));
                 }
-
             }
 
             VarMap::update(str[0], var);
@@ -41,7 +41,6 @@ void SetCommand::doCommand(vector<string> str) {
                 Var *bounded = VarMap::getVar(str.at(0));
                 bounded->set(Utils::stringToDouble(str[2]));
             }
-
         }
     } catch (MyException &e1) {
         cout << "SetCommand : " << __func__ << " : ";

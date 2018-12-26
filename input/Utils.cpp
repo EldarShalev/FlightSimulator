@@ -2,7 +2,6 @@
 // Created by Eldar on 14-Dec-18.
 //
 
-
 #include "Utils.h"
 
 /**
@@ -36,12 +35,14 @@ int Utils::stringToInt(string str) {
 }
 
 string Utils::trim(const string str) {
-    size_t first = str.find_first_not_of(' ');
+    std::string replaced(str.size(), '\0');
+    std::replace_copy(str.begin(), str.end(), replaced.begin(), '\t', ' ');
+    size_t first = replaced.find_first_not_of(' ');
     if (string::npos == first) {
-        return str;
+        return replaced;
     }
-    size_t last = str.find_last_not_of(' ');
-    return str.substr(first, (last - first + 1));
+    size_t last = replaced.find_last_not_of(' ');
+    return replaced.substr(first, (last - first + 1));
 }
 
 string Utils::doubleToString(double number) {

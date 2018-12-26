@@ -10,12 +10,14 @@
 
 class ConditionCommand : public Command {
 private:
-    vector<string> condtion;
+    vector<string> condition;
     bool isOpenMember = false;
     vector<ConditionCommand *> nested;
+    vector<ConditionCommand *> toRelease;
 public:
     vector<vector<string>> args;
     vector<Command *> commands;
+
     virtual void doCommand(vector<string> str) {}
 
     bool isOpen();
@@ -26,18 +28,15 @@ public:
 
     bool checkCondition();
 
-    void addCommand(Command *cmd, vector<string> args);
+    void addCommand(Command *cmd, vector<string> arguments);
 
     void addConditionCommandToNested(ConditionCommand *conditionCommand);
 
-    const vector<string> &getCondtion() const;
-
-    void setCondition(const vector<string> &condtion);
+    void setCondition(const vector<string> &condition);
 
     int seekForExpression(vector<string> args);
 
-
+    virtual ~ConditionCommand();
 };
-
 
 #endif //SIMULATOR_CONDITIONCOMMAND_H

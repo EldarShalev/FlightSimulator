@@ -26,7 +26,6 @@ public:
 
     Parser() {
         commandsMap = new CommandsMap();
-        conditionCommand=new ConditionCommand();
     }
 
     void createCondition(vector<string> input);

@@ -4,21 +4,16 @@
 
 #include "ConditionCommand.h"
 
-
-const vector<string> &ConditionCommand::getCondtion() const {
-    return this->condtion;
+void ConditionCommand::setCondition(const vector<string> &condition) {
+    this->condition = condition;
 }
 
-void ConditionCommand::setCondition(const vector<string> &condtion) {
-    ConditionCommand::condtion = condtion;
-}
-
-void ConditionCommand::addCommand(Command *cmd, vector<string> args1) {
+void ConditionCommand::addCommand(Command *cmd, vector<string> arguments) {
     if (nested.size() > 0) {
-        nested[nested.size() - 1]->addCommand(cmd, args1);
+        nested[nested.size() - 1]->addCommand(cmd, arguments);
     } else {
         commands.push_back(cmd);
-        args.push_back(args1);
+        args.push_back(arguments);
     }
 }
 
@@ -27,7 +22,7 @@ bool ConditionCommand::isOpen() {
 }
 
 void ConditionCommand::open() {
-    isOpenMember = true;
+    this->isOpenMember = true;
 }
 
 bool ConditionCommand::close() {
@@ -53,12 +48,12 @@ bool ConditionCommand::checkCondition() {
     vector<string> result;
     Expression *leftexp;
     Expression *rightexp;
-    if (condtion[condtion.size() - 1] == "{") {
-        vector<string> arg1(condtion.begin(), condtion.end() - 1);
+    if (condition[condition.size() - 1] == "{") {
+        vector<string> arg1(condition.begin(), condition.end() - 1);
         vector<string> args = ParsingUtils::replaceExistingVars(arg1);
         result = args;
     } else {
-        vector<string> arg1(condtion.begin(), condtion.end());
+        vector<string> arg1(condition.begin(), condition.end());
         vector<string> args = ParsingUtils::replaceExistingVars(arg1);
         result = args;
     }
@@ -87,8 +82,6 @@ bool ConditionCommand::checkCondition() {
     }
     // check the logic expression
     return (ParsingUtils::checkExpression(leftexp, rightexp, result.at(place)));
-
-
 }
 
 /**
@@ -97,6 +90,7 @@ bool ConditionCommand::checkCondition() {
  */
 void ConditionCommand::addConditionCommandToNested(ConditionCommand *conditionCommand) {
     nested.push_back(conditionCommand);
+    toRelease.push_back(conditionCommand);
 }
 
 /**
@@ -105,7 +99,7 @@ void ConditionCommand::addConditionCommandToNested(ConditionCommand *conditionCo
  * @return the place the the operator is found.
  */
 int ConditionCommand::seekForExpression(vector<string> args2) {
-    // We use regulat for loop and not iterator because we need the number
+    // We use regular for loop and not iterator because we need the number
     for (int i = 0; i < args2.size(); i++) {
         if (args2[i] == "<" || args2[i] == ">" || args2[i] == "=" || args2[i] == ">=" || args2[i] == "<=" ||
             args2[i] == "!" || args2[i] == "&&" || args2[i] == "||") {
@@ -113,4 +107,10 @@ int ConditionCommand::seekForExpression(vector<string> args2) {
         }
     }
     return -1;
+}
+
+ConditionCommand::~ConditionCommand() {
+    for (int i = 0; i < toRelease.size(); ++i) {
+        delete toRelease[i];
+    }
 }

@@ -30,7 +30,6 @@ void Parser::parse(vector<string> input) {
         return;
     }
 
-
     if (!(loopConditionFound)) {
         // Step Four :- replace all existing vars with their values, unless its the first argument - then its an assignment and we don't need to replace it, so we are skipping it
         vector<string> args1 = ParsingUtils::replaceExistingVars(input);
@@ -60,7 +59,6 @@ void Parser::parse(vector<string> input) {
         }
     }
 
-
     // If we found the bracket to finish the loop
     if (input[0] == "}") {
         conditionCommand->close();
@@ -68,10 +66,10 @@ void Parser::parse(vector<string> input) {
     if (!conditionCommand->isOpen()) {
         loopConditionFound = false;
         conditionCommand->doCommand(input);
+        delete conditionCommand;
         conditionCommand = NULL;
     }
 }
-
 
 /**
  * Creating Var.
@@ -101,7 +99,6 @@ void Parser::bind(vector<string> input1) {
     d->doCommand(args);
 }
 
-
 /**
  * Create condition- loop or If
  * @param input a given input parsed line.
@@ -112,7 +109,6 @@ void Parser::createCondition(vector<string> input) {
     } else if (input.at(0) == "if") {
         createIfCondition(input);
     }
-
 }
 
 void Parser::createWhileCondition(vector<string> input) {
@@ -129,7 +125,6 @@ void Parser::createWhileCondition(vector<string> input) {
         conditionCommand->addCommand(cmd1, input);
         conditionCommand->addConditionCommandToNested(cmd1);
     }
-
 }
 
 void Parser::createIfCondition(vector<string> input) {
@@ -145,15 +140,13 @@ void Parser::createIfCondition(vector<string> input) {
         cmd1->open();
         conditionCommand->addCommand(cmd1, input);
         conditionCommand->addConditionCommandToNested(cmd1);
-
     }
 }
-
 
 /**
  * Destructor
  */
 Parser::~Parser() {
     delete commandsMap;
-    delete conditionCommand;
+    ParsingUtils::release();
 }

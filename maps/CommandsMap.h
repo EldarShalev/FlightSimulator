@@ -22,7 +22,6 @@ using namespace std;
 class CommandsMap {
 public:
     map<string, Command *> commands;
-    map<string, ConditionCommand*> conCommands;
 
 public:
     CommandsMap() {
@@ -32,9 +31,6 @@ public:
         commands.insert(make_pair("=", new SetCommand()));
         commands.insert(make_pair("print", new PrintCommand()));
         commands.insert(make_pair("sleep", new SleepCommand()));
-
-        conCommands.insert(make_pair("while", new LoopCommand()));
-        conCommands.insert(make_pair("if", new IfCommand()));
     }
 
     virtual Command *getCommand(string cmd) {
@@ -44,19 +40,8 @@ public:
         return NULL;
     }
 
-    virtual ConditionCommand *getCmdCommand(string cmd) {
-        if (conCommands.count(cmd) != 0) {
-            return  conCommands[cmd];
-        }
-        return NULL;
-    }
-
     ~CommandsMap() {
         for (map<string, Command *>::iterator it = commands.begin(); it != commands.end(); ++it) {
-            delete it->second;
-        }
-
-        for (map<string, ConditionCommand *>::iterator it = conCommands.begin(); it != conCommands.end(); ++it) {
             delete it->second;
         }
     }

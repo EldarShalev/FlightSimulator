@@ -22,15 +22,17 @@ public:
     static VarMap varMap;
     static ShuntingYard shuntingYard;
 
-
     static vector<string> replaceExistingVars(vector<string> input);
 
     static vector<string> createParsedInput(vector<string> &input, int idx);
 
     static Expression *getExpression(vector<string> &input, int idx);
 
-    static bool checkExpression(Expression* left, Expression* right, string logicCondition);
+    static bool checkExpression(Expression *left, Expression *right, string logicCondition);
 
+    static void release();
+
+    static bool calculateExpression(Expression *e);
 };
 
 
