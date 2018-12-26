@@ -30,7 +30,7 @@ DataReaderServer::DataReaderServer(string address1, int port1, int sampleRate1) 
     dataRead.insert(make_pair("/controls/flight/elevator", "0"));
     dataRead.insert(make_pair("/controls/flight/rudder", "0"));
     dataRead.insert(make_pair("/controls/flight/flaps", "0"));
-    dataRead.insert(make_pair("/controls/engines/engine/throttle", "0"));
+    dataRead.insert(make_pair("/controls/engines/current-engine/throttle", "0"));
     dataRead.insert(make_pair("/engines/engine/rpm", "0"));
 
 
@@ -81,6 +81,7 @@ void DataReaderServer::openConnection() {
         perror("could not create thread");
         exit(EXIT_FAILURE);
     }
+    locker.wait();
 }
 
 void DataReaderServer::closeConnection() {
@@ -93,25 +94,15 @@ void DataReaderServer::closeConnection() {
 
 
 void *DataReaderServer::connectionHandler(void) {
-    int valread;
-    struct sockaddr_in client;
     //Accept and incoming connection
     puts("Waiting for incoming connections...");
-    socklen_t addrlen = sizeof(sockaddr_in);
     threadContinueRunning = true;
     char buffer[4096] = {0};
     while (threadContinueRunning) {
-        //if (socketClient = accept(serverDescriptor, (struct sockaddr *) &client, &addrlen)) {
-//            bzero(message, messageLen);
-//            read(socketClient, message, messageLen);
-//            string msg(message);
-
-//        memcpy(&recv_size, buffer, sizeof(uint32_t));
         listen(serverDescriptor, 5);
-        valread = read(socketClient, buffer, sizeof(buffer));
+        read(socketClient, buffer, sizeof(buffer));
         xmlDataSplitter(buffer);
     }
-    //}
 }
 
 string DataReaderServer::readServerCommand(string key) {
@@ -154,7 +145,7 @@ void DataReaderServer::updateMapEachIteration(vector<string> vector1) {
     dataRead["/controls/flight/elevator"] = (vector1.at(17));
     dataRead["/controls/flight/rudder"] = (vector1.at(18));
     dataRead["/controls/flight/flaps"] = (vector1.at(19));
-    dataRead["/controls/engines/engine/throttle"] = (vector1.at(20));
+    dataRead["/controls/engines/current-engine/throttle"] = (vector1.at(20));
     dataRead["/engines/engine/rpm"] = (vector1.at(21));
 
 

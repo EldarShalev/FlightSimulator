@@ -6,8 +6,11 @@
 #define SIMULATOR_IFCOMMAND_H
 
 #include "input/Utils.h"
+#include "input/ParsingUtils.h"
+#include "ConditionCommand.h"
 
-class IfCommand : public Command {
+
+class IfCommand : public ConditionCommand {
 public:
     virtual void doCommand(vector<string> str);
 };

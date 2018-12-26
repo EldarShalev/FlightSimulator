@@ -6,6 +6,7 @@
 #define SIMULATOR_SETCOMMAND_H
 
 #include "input/Utils.h"
+#include "Command.h"
 #include "maps/VarMap.h"
 #include "data/BoundedVar.h"
 

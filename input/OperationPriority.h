@@ -30,6 +30,7 @@ private:
     map<char, int> mapPriority;
 
     void init() {
+        // Negative Priority
         mapPriority['u'] = Priority::SUPER;
         //Hight priority
         mapPriority['*'] = Priority::HIGH;
@@ -45,11 +46,9 @@ private:
     }
 
 public:
-
     OperationPriority() {
         init();
     }
-
     int FindPriorByOp(char op) const;
     bool isOperator(char sym) const;
 };

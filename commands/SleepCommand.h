@@ -6,6 +6,8 @@
 #define SIMULATOR_SLEEPCOMMAND_H
 
 #include "input/Utils.h"
+#include "Command.h"
+
 #include <thread>
 #include <chrono>
 

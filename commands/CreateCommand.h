@@ -8,7 +8,7 @@
 #include "input/Utils.h"
 #include "data/Var.h"
 #include "maps/VarMap.h"
-
+#include "Command.h"
 class CreateCommand : public Command {
 public:
     virtual void doCommand(vector<string> str);

@@ -6,6 +6,7 @@
 #define SIMULATOR_PRINTCOMMAND_H
 
 #include "input/Utils.h"
+#include "Command.h"
 #include <iostream>
 using namespace std;
 

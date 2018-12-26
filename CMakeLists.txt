@@ -64,4 +64,4 @@ add_executable(FlightSimulator
         input/ShuntingYard.cpp
         input/ShuntingYard.h
         input/LexicalAnalyzer.cpp
-        input/LexicalAnalyzer.h expressions/Negative.h expressions/Unary.h)
+        input/LexicalAnalyzer.h expressions/Negative.h expressions/Unary.h input/ParsingUtils.cpp input/ParsingUtils.h commands/ConditionCommand.cpp commands/ConditionCommand.h)

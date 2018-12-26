@@ -126,22 +126,24 @@ string ShuntingYard::parseTheInfix(string src) {
             temp2 += src[i];
         }
     }
-    for (std::string::size_type i = 0; i < temp2.size() - 1; ++i) {
-        if (temp2[i] == '-' && temp2[i + 1] == '-') {
-            string temp = temp2.substr(0, i);
-            temp += "+";
-            temp += temp2.substr(i + 2, temp2.size());
-            temp2 = temp;
+    if (src.length()>2) {
+        for (std::string::size_type i = 0; i < temp2.size() - 1; ++i) {
+            if (temp2[i] == '-' && temp2[i + 1] == '-') {
+                string temp = temp2.substr(0, i);
+                temp += "+";
+                temp += temp2.substr(i + 2, temp2.size());
+                temp2 = temp;
+            }
         }
-    }
 
-    for (std::string::size_type i = 0; i < temp2.size() - 1; ++i) {
-        if (temp2[i] == '(' && temp2[i + 1] == '-') {
-            temp2[i + 1] = 'u';
-            continue;
-        }
-        if (temp2[i] == '-' && !isdigit(temp2[i - 1]) && temp2[i - 1] != '(' && temp2[i - 1] != ')') {
-            temp2[i] = 'u';
+        for (std::string::size_type i = 0; i < temp2.size() - 1; ++i) {
+            if (temp2[i] == '(' && temp2[i + 1] == '-') {
+                temp2[i + 1] = 'u';
+                continue;
+            }
+            if (temp2[i] == '-' && !isdigit(temp2[i - 1]) && temp2[i - 1] != '(' && temp2[i - 1] != ')') {
+                temp2[i] = 'u';
+            }
         }
     }
     return temp2;

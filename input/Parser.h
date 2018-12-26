@@ -7,28 +7,36 @@
 
 #include <sstream>
 #include "maps/CommandsMap.h"
-#include "maps/VarMap.h"
-#include "ShuntingYard.h"
-#include "LoopCommand.h"
+#include "ParsingUtils.h"
 
 class Parser {
 private:
+
+    bool loopConditionFound = false;
     CommandsMap *commandsMap;
-    ShuntingYard shuntingYard;
-    VarMap varMap;
-
-    vector<string> createParsedInput(vector<string> &input, int idx);
-
-    Expression *getExpression(vector<string> &input, int idx);
+    ConditionCommand *conditionCommand;
 
 public:
+
+    vector<string> createVar(vector<string> input1);
+
+    void bind(vector<string> input1);
+
+    void parse(vector<string> input);
+
     Parser() {
         commandsMap = new CommandsMap();
+        conditionCommand=new ConditionCommand();
     }
+
+    void createCondition(vector<string> input);
+
+    void createWhileCondition(vector<string> input);
+
+    void createIfCondition(vector<string> input);
 
     ~Parser();
 
-    void parse(vector<string> input);
 };
 
 #endif //SIMULATOR_PARSER_H
